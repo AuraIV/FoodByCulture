@@ -8,5 +8,6 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "yelp": "^1.0.1"
   }
 }
