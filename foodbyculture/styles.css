@@ -9,18 +9,7 @@ body{
 	font-family: sans-serif;
 }
 
-#right {
-  text-align: left;
-  float: right ;
-  width: 40% ;
-}
-#left {
-  text-align: right;
-  float: left;
-  width: 40%;
-}
-
-#container{
+#content{
 	text-align: center;
 	background: white;
 	width: 100px auto;
