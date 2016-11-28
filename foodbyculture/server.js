@@ -54,7 +54,7 @@ function testAPI(){
   var apiURL = url + '?' + parameters
 
   // See http://www.yelp.com/developers/documentation/v2/search_api
-  yelp.search({ term: 'food', location: 'Newport, RI', limit: 1 })
+  yelp.search({ term: 'food', location: 'Newport, RI', limit: 2 })
   .then(function (data) {
     processData(data)
   })
@@ -86,14 +86,17 @@ function processData(data){
   var yelp_data = data.businesses;
 
   //We could make this a list of the data we do want and then use that 
-  var flitered_data;
+  var filtered_data;
 
   for(var i in yelp_data){
     var rating = yelp_data[i].rating
     var name = yelp_data[i].name
+    var categories = yelp_data[i].categories
 
     console.log('Name of restaurant: ' + name)
     console.log('Rating: ' + rating)
+    console.log('Categories ' + categories)
+
   }
 }
 
