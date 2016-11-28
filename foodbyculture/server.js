@@ -35,19 +35,7 @@ var server = http.createServer (function (req, res) {
       contentType = 'image/gif'
       sendFile(res, 'img/SAPIC.gif', contentType)
       break
-    case '/img/GitHub-Mark-32px.gif':
-      contentType = 'image/gif'
-      sendFile(res, 'img/GitHub-Mark-32px.gif', contentType)
-      break
-    case '/img/Twitter_Logo_Blue.gif':
-      contentType = 'image/gif'
-      sendFile(res, 'img/Twitter_Logo_Blue.gif', contentType)
-      break
-    case '/img/In-2C-34px-R.gif':
-      contentType = 'image/gif'
-      sendFile(res, 'img/In-2C-34px-R.gif', contentType)
-      break
-      */
+    */
 
     default:
       res.end('404 not found')
@@ -58,14 +46,22 @@ server.listen(process.env.PORT || port);
 console.log('listening on 8080')
 
 function testAPI(){
+
+  var url = 'http://api.yelp.com/v2/search'
+  var parameters = 'term=cream+puffs&location=San+Francisco'
+
+  //Full API url
+  var apiURL = url + '?' + parameters
+
   // See http://www.yelp.com/developers/documentation/v2/search_api
-  yelp.search({ term: 'food', location: 'Newport, RI' })
+  yelp.search({ term: 'food', location: 'Newport, RI', limit: 1 })
   .then(function (data) {
-    console.log(data);
+    processData(data)
   })
   .catch(function (err) {
     console.error(err);
   });
+
 
   /**
   // See http://www.yelp.com/developers/documentation/v2/business
@@ -83,6 +79,22 @@ function testAPI(){
     console.log(data);
   });
 */
+}
+
+function processData(data){
+  //Array of all of the businesses from the yelp response
+  var yelp_data = data.businesses;
+
+  //We could make this a list of the data we do want and then use that 
+  var flitered_data;
+
+  for(var i in yelp_data){
+    var rating = yelp_data[i].rating
+    var name = yelp_data[i].name
+
+    console.log('Name of restaurant: ' + name)
+    console.log('Rating: ' + rating)
+  }
 }
 
 function sendFile(res, filename, contentType) {
