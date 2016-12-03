@@ -75,7 +75,7 @@ function testAPI(){
   var apiURL = url + '?' + parameters
 
   // See http://www.yelp.com/developers/documentation/v2/search_api
-  yelp.search({ term: 'food', location: 'Newport, RI', limit: 1 })
+  yelp.search({ term: 'food', location: 'Boston, MA', limit: 20 })
   .then(function (data) {
     processData(data)
   })
@@ -97,7 +97,7 @@ function gatherFood(listOfFood){
       result.push(listOfFood[i][j])
     }
   }
-  console.log("Foods: " + result)
+  //console.log("Foods: " + result)
   return result;
 }
 
@@ -114,7 +114,8 @@ function matchCategory(restaurant){
 
   for(i = 0; i < listOfFood.length; i++){
     for (var [key, value] of cultures.entries()) {
-      if(value.indexOf(listOfFood[i]) > -1){
+      var re = new RegExp(".*"+listOfFood[i]+".*", "i");
+      if(re.test(value)){
         console.log('The culture is: ' + key)
       }
     } 
@@ -137,6 +138,7 @@ function processData(data){
     var name = yelp_data[i].name
     console.log('Name of restaurant: ' + name)
     console.log('Rating: ' + rating)
+    // console.log(yelp_data[i].categories)
 
     matchCategory(yelp_data[i])
   }
