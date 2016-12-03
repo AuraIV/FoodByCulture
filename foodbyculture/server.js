@@ -14,6 +14,27 @@ var yelp = new Yelp({
   token_secret: 'frNGbchbX9T7QylpGVOrc7hew4s',
 });
 
+//Array of food categories needed for the classfication of cultures of restaurants
+var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American']
+var Mediterranean = ['Mediterranean', 'Falafel']
+var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan']
+var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi']
+var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American']
+var French = ['French','Mauritius', 'Reunion']
+var Indian = ['Indian']
+var African = ['African']
+
+
+var cultures = new Map();
+
+cultures.set('American', American)
+cultures.set('Mediterranean', Mediterranean)
+cultures.set('Italian', Italian)
+cultures.set('Asian', Asian)
+cultures.set('Latin_America', Latin_America)
+cultures.set('French', French)
+cultures.set('Indian', Indian)
+cultures.set('African', African)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
@@ -63,38 +84,63 @@ function testAPI(){
   });
 
 
-  /**
-  // See http://www.yelp.com/developers/documentation/v2/business
-  yelp.business('yelp-san-francisco')
-    .then(console.log)
-    .catch(console.error);
-
-  yelp.phoneSearch({ phone: '+15555555555' })
-    .then(console.log)
-    .catch(console.error);
-
-  // A callback based API is also available:
-  yelp.business('yelp-san-francisco', function(err, data) {
-    if (err) return console.log(error);
-    console.log(data);
-  });
-*/
 }
 
+/**
+ * Helper function to make the nested array into a singular array of food
+ *
+ */
+function gatherFood(listOfFood){
+  var result = []
+  for(i = 0; i < listOfFood.length; i++){
+    for(j = 0; j < listOfFood[i].length; j++){
+      result.push(listOfFood[i][j])
+    }
+  }
+  console.log("Foods: " + result)
+  return result;
+}
+
+/**
+ * Attempt to match the categories of the restaurant to a culture
+ *
+ */
+function matchCategory(restaurant){
+  //Create regular expression based on the restaurants categories
+  var categories = restaurant.categories
+  var listOfFood = gatherFood(categories)
+  var culture_type = '';
+  var len = cultures.size;
+
+  for(i = 0; i < listOfFood.length; i++){
+    for (var [key, value] of cultures.entries()) {
+      if(value.indexOf(listOfFood[i]) > -1){
+        console.log('The culture is: ' + key)
+      }
+    } 
+  }
+  
+
+}
+/**
+ * Function to process yelp data and manipulate further
+ * Grabs specific pieces of information such as name, ratings, categories, etc.
+ */
 function processData(data){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
 
   //We could make this a list of the data we do want and then use that 
   var flitered_data;
-
-  for(var i in yelp_data){
+  for(var i = 0; i < yelp_data.length; i++){
     var rating = yelp_data[i].rating
     var name = yelp_data[i].name
-
     console.log('Name of restaurant: ' + name)
     console.log('Rating: ' + rating)
+
+    matchCategory(yelp_data[i])
   }
+
 }
 
 function sendFile(res, filename, contentType) {
