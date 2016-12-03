@@ -51,13 +51,6 @@ var server = http.createServer (function (req, res) {
       sendFile(res, 'styles.css', 'text/css')
       break
 
-      /**
-    case '/img/SAPIC.gif':
-      contentType = 'image/gif'
-      sendFile(res, 'img/SAPIC.gif', contentType)
-      break
-    */
-
     default:
       res.end('404 not found')
   }
@@ -94,10 +87,12 @@ function gatherFood(listOfFood){
   var result = []
   for(i = 0; i < listOfFood.length; i++){
     for(j = 0; j < listOfFood[i].length; j++){
-      result.push(listOfFood[i][j])
+      //Only add if we haven't seen this culture yet
+      if(result.indexOf(listOfFood[i][j].toLowerCase()) < 0){
+        result.push(listOfFood[i][j].toLowerCase())
+      }
     }
   }
-  //console.log("Foods: " + result)
   return result;
 }
 
@@ -111,17 +106,26 @@ function matchCategory(restaurant){
   var listOfFood = gatherFood(categories)
   var culture_type = '';
   var len = cultures.size;
+  var found_cultures = []
 
+  //Look at each food
   for(i = 0; i < listOfFood.length; i++){
+    //Try to match them with our cultures
     for (var [key, value] of cultures.entries()) {
-      var re = new RegExp(".*"+listOfFood[i]+".*", "i");
-      if(re.test(value)){
-        console.log('The culture is: ' + key)
+      var re = new RegExp(".*" + listOfFood[i] + ".*", "i");
+      //Have we seen this culture yet?
+      for(j = 0; j < value.length; j++){
+        if(re.test(value[j])){ 
+          if(found_cultures.indexOf(value[j]) < 0){
+            found_cultures.push(key)  
+          }
+        }
       }
     } 
   }
   
-
+  console.log('The cultures are: ' + found_cultures)
+  return found_cultures
 }
 /**
  * Function to process yelp data and manipulate further
