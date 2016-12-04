@@ -145,20 +145,20 @@ function processData(data){
   var yelp_data = data.businesses;
 
   //We could make this a list of the data we do want and then use that 
-<<<<<<< HEAD
-  var filtered_data;
+// <<<<<<< HEAD
+//   var filtered_data;
 
-  for(var i in yelp_data){
-    var rating = yelp_data[i].rating
-    var name = yelp_data[i].name
-    var categories = yelp_data[i].categories
+//   for(var i in yelp_data){
+//     var rating = yelp_data[i].rating
+//     var name = yelp_data[i].name
+//     var categories = yelp_data[i].categories
 
-    console.log('Name of restaurant: ' + name)
-    console.log('Rating: ' + rating)
-    console.log('Categories ' + categories)
+//     console.log('Name of restaurant: ' + name)
+//     console.log('Rating: ' + rating)
+//     console.log('Categories ' + categories)
 
-  }
-=======
+//   }
+// =======
   var flitered_data;
   var results = []
   var final = new Map();
@@ -187,7 +187,7 @@ function processData(data){
 
 console.log(final);
 
->>>>>>> Erik
+// >>>>>>> Erik
 }
   
 
