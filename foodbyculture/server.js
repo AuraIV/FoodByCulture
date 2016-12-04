@@ -68,13 +68,22 @@ function testAPI(){
   var apiURL = url + '?' + parameters
 
   // See http://www.yelp.com/developers/documentation/v2/search_api
-  yelp.search({ term: 'food', location: 'Boston, MA', limit: 20 })
+  yelp.search({ term: 'food', location: 'Boston, MA', limit: 40 })
   .then(function (data) {
     processData(data)
   })
   .catch(function (err) {
     console.error(err);
   });
+
+    yelp.search({ term: 'food', location: 'Houston, TX', limit: 40 })
+  .then(function (data) {
+    processData(data)
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
+
 
 
 }
@@ -123,8 +132,7 @@ function matchCategory(restaurant){
       }
     } 
   }
-  
-  console.log('The cultures are: ' + found_cultures)
+ // console.log('The cultures are: ' + found_cultures)
   return found_cultures
 }
 /**
@@ -137,17 +145,35 @@ function processData(data){
 
   //We could make this a list of the data we do want and then use that 
   var flitered_data;
+  var results = []
+  var final = new Map();
   for(var i = 0; i < yelp_data.length; i++){
     var rating = yelp_data[i].rating
     var name = yelp_data[i].name
-    console.log('Name of restaurant: ' + name)
-    console.log('Rating: ' + rating)
-    // console.log(yelp_data[i].categories)
+    results.push(matchCategory(yelp_data[i]));  
+  }  
 
-    matchCategory(yelp_data[i])
-  }
+
+ for(i = 0; i < results.length; i++){
+
+      var rest = results[i]; //Particular restaurant's culture
+      // console.log(rest);
+
+      for(j = 0; j < rest.length; j++){
+       // console.log(rest[j]);
+        if(final.has(rest[j])){
+          final.set(rest[j], final.get(rest[j]) + 1);
+        }
+        else{
+          final.set(rest[j], 1);
+        } 
+    }
+}
+
+console.log(final);
 
 }
+  
 
 function sendFile(res, filename, contentType) {
   contentType = contentType || 'text/html'
