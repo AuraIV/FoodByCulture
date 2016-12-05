@@ -15,14 +15,15 @@ var yelp = new Yelp({
 });
 
 //Array of food categories needed for the classfication of cultures of restaurants
-var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American']
-var Mediterranean = ['Mediterranean', 'Falafel']
-var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan']
-var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi']
-var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American']
+var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American', 'chiken_wings']
+var Mediterranean = ['Mediterranean', 'Falafel', 'Greek']
+var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan', 'Pizza', 'Peruvian']
+var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi', 'Vietnamese', 'Thai', 'Taiwanese', 'Filipino', 'Cantonese', 'dimsum', 'hainan', 'shanghainese', 'szechuan', 'asianfusion']
+var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American', 'Nicaraguan', 'Caribbean', 'Dominican', 'Haitian', 'puertorican', 'trinidadian','Brazilian', 'argentine']
 var French = ['French','Mauritius', 'Reunion']
 var Indian = ['Indian']
 var African = ['African']
+var TexMex = ['Tex-mex', 'newwmexican' ]
 
 
 var cultures = new Map();
@@ -35,6 +36,7 @@ cultures.set('Latin_America', Latin_America)
 cultures.set('French', French)
 cultures.set('Indian', Indian)
 cultures.set('African', African)
+cultures.set('Tex-Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
