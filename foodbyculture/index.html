@@ -1,9 +1,9 @@
 <html lang="en">
   <head>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+ <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
-    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script> -->
     <title>CS4241 Final Project</title>
     <meta charset="utf-8">
   </head>
@@ -14,5 +14,61 @@
     <p>Content here</p>
   </div>
 
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+// function populate() {
+//   // console.log("HERE?")
+ 
+//   var reqp = new XMLHttpRequest();
+//   reqp.open('GET', '/index.html', true);
+//   reqp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//   reqp.onload = function () {
+//     makeGet('/graph');
+//   };
+
+// }
+
+ makeGet('/graph');
+
+function makeGet(url) {
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function() {
+    handleRes(req);
+  }
+
+  req.open('GET', url);
+  req.send();
+}
+
+function handleRes(req) {
+
+  if( req.readyState !== XMLHttpRequest.DONE )
+    return;
+
+  if(req.status === 200){
+    buildList( JSON.parse(req.responseText) );
+  }
+}
+
+function buildList( A ) {
+
+  console.log("HERE?!")
+
+  var data = A;
+       d3.select('#content').selectAll('p')
+      .data(data)
+      .enter().append('p')
+      .text(function(d) { return d[0]; }).style('text-align', 'left')
+      .on('mouseenter', function() {
+      console.log("in here!");
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d[1]*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
+      })
+    }
+
+  
+
+</script>
   </body>
 </html>

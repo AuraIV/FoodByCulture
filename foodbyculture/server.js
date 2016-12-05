@@ -15,18 +15,18 @@ var yelp = new Yelp({
 });
 
 //Array of food categories needed for the classfication of cultures of restaurants
-var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American', 'chiken_wings']
-var Mediterranean = ['Mediterranean', 'Falafel', 'Greek']
-var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan', 'Pizza', 'Peruvian']
-var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi', 'Vietnamese', 'Thai', 'Taiwanese', 'Filipino', 'Cantonese', 'dimsum', 'hainan', 'shanghainese', 'szechuan', 'asianfusion']
-var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American', 'Nicaraguan', 'Caribbean', 'Dominican', 'Haitian', 'puertorican', 'trinidadian','Brazilian', 'argentine']
+var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American']
+var Mediterranean = ['Mediterranean', 'Falafel']
+var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan']
+var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi']
+var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American']
 var French = ['French','Mauritius', 'Reunion']
 var Indian = ['Indian']
 var African = ['African']
-var TexMex = ['Tex-mex', 'newwmexican' ]
-
+ 
 
 var cultures = new Map();
+var graph = [];
 
 cultures.set('American', American)
 cultures.set('Mediterranean', Mediterranean)
@@ -36,7 +36,6 @@ cultures.set('Latin_America', Latin_America)
 cultures.set('French', French)
 cultures.set('Indian', Indian)
 cultures.set('African', African)
-cultures.set('Tex-Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
@@ -48,11 +47,15 @@ var server = http.createServer (function (req, res) {
     case '/index.html':
       contentType = 'text/html'
       sendFile(res, 'index.html', contentType)
-      break
+      break;
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
       break
-
+    case '/graph':
+      testAPI()
+      console.log(JSON.stringify(graph))
+      res.end( JSON.stringify(graph) );
+      break
     default:
       res.end('404 not found')
   }
@@ -70,6 +73,7 @@ function testAPI(){
   var apiURL = url + '?' + parameters
 
   // See http://www.yelp.com/developers/documentation/v2/search_api
+
   yelp.search({ term: 'food', location: 'Boston, MA', limit: 40 })
   .then(function (data) {
     processData(data)
@@ -146,6 +150,20 @@ function processData(data){
   var yelp_data = data.businesses;
 
   //We could make this a list of the data we do want and then use that 
+// <<<<<<< HEAD
+//   var filtered_data;
+
+//   for(var i in yelp_data){
+//     var rating = yelp_data[i].rating
+//     var name = yelp_data[i].name
+//     var categories = yelp_data[i].categories
+
+//     console.log('Name of restaurant: ' + name)
+//     console.log('Rating: ' + rating)
+//     console.log('Categories ' + categories)
+
+//   }
+// =======
   var flitered_data;
   var results = []
   var final = new Map();
@@ -172,8 +190,9 @@ function processData(data){
     }
 }
 
-console.log(final);
+graph = final.entries();
 
+// >>>>>>> Erik
 }
   
 
@@ -185,7 +204,7 @@ function sendFile(res, filename, contentType) {
     res.end(content, 'utf-8')
   })
 
-  testAPI()
+  // testAPI()
 }
 
 
