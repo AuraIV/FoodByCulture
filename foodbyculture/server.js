@@ -53,8 +53,7 @@ var server = http.createServer (function (req, res) {
       break
     case '/graph':
       testAPI()
-      console.log(JSON.stringify(graph))
-      res.end( JSON.stringify(graph) );
+      res.end(JSON.stringify(graph));
       break
     default:
       res.end('404 not found')
@@ -190,8 +189,7 @@ function processData(data){
     }
 }
 
-graph = final.entries();
-
+graph = final;
 // >>>>>>> Erik
 }
   
