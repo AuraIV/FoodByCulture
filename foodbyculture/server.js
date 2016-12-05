@@ -53,7 +53,10 @@ var server = http.createServer (function (req, res) {
       break
     case '/graph':
       testAPI()
-      console.log(graph)
+      //console.log("Here!");
+      console.log(graph);
+      //console.log(typeof(graph));
+      console.log(JSON.stringify(graph))
       res.end(JSON.stringify(graph));
       break
     default:
@@ -190,8 +193,14 @@ function processData(data){
     }
 }
 
-graph = final.entires();
-
+  final.forEach(function(value,key,final) {
+    var currentObject = {};
+    currentObject.key = key;
+    currentObject.value = value;
+    graph.push(currentObject);
+    //console.log("The key is: "+key);
+    //console.log("The value is: "+value);
+  });
 
 }
   

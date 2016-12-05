@@ -56,16 +56,15 @@ function buildList( A ) {
 
   console.log("HERE?!")
   if(A){
-   console.log(A)
 
   var data = A;
        d3.select('#content').selectAll('p')
       .data(data)
       .enter().append('p')
-      .text(function(d) { return d[0]; }).style('text-align', 'left')
+      .text(function(d) { return d.key; }).style('text-align', 'left')
       .on('mouseenter', function() {
       console.log("in here!");
-        d3.select(this).transition().duration(5000).style('width', function(d) { return d[1]*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
       })
     }
 }
