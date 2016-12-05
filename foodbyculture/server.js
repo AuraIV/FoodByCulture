@@ -16,13 +16,14 @@ var yelp = new Yelp({
 
 //Array of food categories needed for the classfication of cultures of restaurants
 var American = ['Burgers', 'Hot Dogs', 'Sandwiches', 'Soul Food', 'American']
-var Mediterranean = ['Mediterranean', 'Falafel']
-var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan']
-var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi']
-var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American']
+var Mediterranean = ['Mediterranean', 'Falafel', 'greek', 'mideastern', 'egyptian', 'lebanese']
+var Italian = ['Pasta', 'Italian', 'Calabrian', 'Sardinian', 'Tuscan', 'Pizza']
+var Asian = ['Korean', 'Japanese', 'Chinese', 'Sushi', 'asianfusion', 'panasian', 'Vietnamese', 'Thai', 'cantonese', 'dimsum', 'hainan', 'shanghainese', 'szechuan']
+var Latin_America = ['Mexican', 'Tacos', 'Burritos', 'Salvadoran', 'Colombian','Venezuelan', 'Latin American', 'nicaraguan']
 var French = ['French','Mauritius', 'Reunion']
 var Indian = ['Indian']
-var African = ['African']
+var African = ['African', 'moroccan']
+var TexMex = ['tex-mex']
  
 
 var cultures = new Map();
@@ -36,6 +37,7 @@ cultures.set('Latin_America', Latin_America)
 cultures.set('French', French)
 cultures.set('Indian', Indian)
 cultures.set('African', African)
+cultures.set('Tex-Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
@@ -52,11 +54,8 @@ var server = http.createServer (function (req, res) {
       sendFile(res, 'styles.css', 'text/css')
       break
     case '/graph':
-      testAPI()
-      //console.log("Here!");
-      console.log(graph);
-      //console.log(typeof(graph));
-      console.log(JSON.stringify(graph))
+      testAPI('Boston, MA')
+      testAPI('Houston, TX')
       res.end(JSON.stringify(graph));
       break
     default:
@@ -67,35 +66,19 @@ var server = http.createServer (function (req, res) {
 server.listen(process.env.PORT || port);
 console.log('listening on 8080')
 
-function testAPI(){
+/**Function that gathers the data from the Yelp API. Takes the city name as a parameter */
+function testAPI(city){
 
-  var url = 'http://api.yelp.com/v2/search'
-  var parameters = 'term=cream+puffs&location=San+Francisco'
-
-  //Full API url
-  var apiURL = url + '?' + parameters
-
-  // See http://www.yelp.com/developers/documentation/v2/search_api
-
-  yelp.search({ term: 'food', location: 'Boston, MA', limit: 40 })
+  yelp.search({ term: 'food', location: city, limit: 40 })
   .then(function (data) {
     processData(data)
   })
   .catch(function (err) {
     console.error(err);
   });
-
-    yelp.search({ term: 'food', location: 'Houston, TX', limit: 40 })
-  .then(function (data) {
-    processData(data)
-  })
-  .catch(function (err) {
-    console.error(err);
-  });
-
-
-
 }
+
+
 
 /**
  * Helper function to make the nested array into a singular array of food
@@ -152,21 +135,6 @@ function processData(data){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
 
-  //We could make this a list of the data we do want and then use that 
-// <<<<<<< HEAD
-//   var filtered_data;
-
-//   for(var i in yelp_data){
-//     var rating = yelp_data[i].rating
-//     var name = yelp_data[i].name
-//     var categories = yelp_data[i].categories
-
-//     console.log('Name of restaurant: ' + name)
-//     console.log('Rating: ' + rating)
-//     console.log('Categories ' + categories)
-
-//   }
-// =======
   var flitered_data;
   var results = []
   var final = new Map();
@@ -176,14 +144,16 @@ function processData(data){
     results.push(matchCategory(yelp_data[i]));  
   }  
 
-
+/**
+Goes through the list of results to map it to it's corresponding */
  for(i = 0; i < results.length; i++){
 
       var rest = results[i]; //Particular restaurant's culture
       // console.log(rest);
 
       for(j = 0; j < rest.length; j++){
-       // console.log(rest[j]);
+       // Have we seen this culture before? If so, add one to it as we encountered again
+       //Otherwise, set it to one.
         if(final.has(rest[j])){
           final.set(rest[j], final.get(rest[j]) + 1);
         }
@@ -193,13 +163,12 @@ function processData(data){
     }
 }
 
+//For each element in the key, map it to an object, then to an array of that object
   final.forEach(function(value,key,final) {
     var currentObject = {};
     currentObject.key = key;
     currentObject.value = value;
     graph.push(currentObject);
-    //console.log("The key is: "+key);
-    //console.log("The value is: "+value);
   });
 
 }
