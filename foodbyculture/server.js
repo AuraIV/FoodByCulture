@@ -54,9 +54,12 @@ var server = http.createServer (function (req, res) {
       sendFile(res, 'styles.css', 'text/css')
       break
     case '/graph':
+
       testAPI('Boston, MA')
       testAPI('Houston, TX')
-      res.end(JSON.stringify(graph));
+      var funct = function(){res.end(JSON.stringify(graph));}
+      setTimeout(funct, 1500)
+      
       break
     default:
       res.end('404 not found')
@@ -182,7 +185,6 @@ function sendFile(res, filename, contentType) {
     res.end(content, 'utf-8')
   })
 
-  // testAPI()
 }
 
 
