@@ -190,7 +190,7 @@ function processData(data){
     }
 }
 
-graph = final;
+graph = final.entires();
 
 
 }
