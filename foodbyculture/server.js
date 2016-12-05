@@ -53,6 +53,7 @@ var server = http.createServer (function (req, res) {
       break
     case '/graph':
       testAPI()
+      console.log(graph)
       res.end(JSON.stringify(graph));
       break
     default:
@@ -190,7 +191,8 @@ function processData(data){
 }
 
 graph = final;
-// >>>>>>> Erik
+
+
 }
   
 
