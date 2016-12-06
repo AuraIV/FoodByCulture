@@ -54,6 +54,9 @@ var server = http.createServer (function (req, res) {
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
       break
+    case '/img/background.jpg':
+      sendFile(res, 'img/background.jpg', 'image/jpg')
+      break 
     case '/graph':
       if (count == 0){
       testAPI('Boston, MA')

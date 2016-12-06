@@ -5,8 +5,13 @@ h1 {
 }
 
 body{
-	background-color: #DDDDDD ;
+	/*background-color: #DDDDDD ;*/
 	font-family: sans-serif;
+	background-image:url('/img/background.jpg');
+	background-repeat:no-repeat;
+	/*background-size:contain;*/
+	background-position:center;
+	background-size: 100%;
 }
 
 #content{
