@@ -13,6 +13,28 @@ body{
 	background-position:center;
 	background-size: 100%;
 }
+nav {
+  list-style-type:none;
+  display:flex;
+  flex-wrap: nowrap;
+  width:100%;
+  background:#B26E63;
+  opacity: 0.7;
+  filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+nav li { 
+display: inline-block; 
+padding: 20px; 
+color: white;
+ text-decoration: none;
+   width:33%;
+}
+
+nav li a{
+	text-decoration: none;
+	/*Ask about Opacity to professor Lane */
+	color: white
+}
 
 #content{
 	text-align: center;
