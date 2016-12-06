@@ -54,7 +54,6 @@ var server = http.createServer (function (req, res) {
       sendFile(res, 'styles.css', 'text/css')
       break
     case '/graph':
-
       testAPI('Boston, MA')
       testAPI('Houston, TX')
       var funct = function(){res.end(JSON.stringify(graph));}
