@@ -28,6 +28,7 @@ var TexMex = ['tex-mex']
 
 var cultures = new Map();
 var graph = [];
+var count = 0;
 
 cultures.set('American', American)
 cultures.set('Mediterranean', Mediterranean)
@@ -54,10 +55,13 @@ var server = http.createServer (function (req, res) {
       sendFile(res, 'styles.css', 'text/css')
       break
     case '/graph':
+      if (count == 0){
       testAPI('Boston, MA')
       testAPI('Houston, TX')
+    }
+      count += count + 1;
       var funct = function(){res.end(JSON.stringify(graph));}
-      setTimeout(funct, 1500)
+      setTimeout(funct, 2500)
       
       break
     default:
