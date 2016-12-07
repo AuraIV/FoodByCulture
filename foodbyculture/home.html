@@ -40,11 +40,13 @@
 var arrow = document.getElementById('arrow')
 var boston = document.getElementById('bos')
 var houston = document.getElementById('hou')
+var bounce = document.getElementsByClassName('bounce');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
   boston.style = "display:inline";
   houston.style = "display:inline";
+  bounce[0].style.webkitAnimationPlayState="paused";
 });
 
 function makeGet(url, contName) {
@@ -69,22 +71,6 @@ function handleRes(req, contName) {
 }
 
 function buildList( A, contName ) {
-
-
-
-//   A.sort(function(a, b) {
-//   var nameA = a.key.toUpperCase(); // ignore upper and lowercase
-//   var nameB = b.key.toUpperCase(); // ignore upper and lowercase
-//   if (nameA < nameB) {
-//     return -1;
-//   }
-//   if (nameA > nameB) {
-//     return 1;
-//   }
-
-//   // names must be equal
-//   return 0;
-// });
 
 A.sort(function (a, b) {
   if (a.value < b.value) {
