@@ -50,21 +50,39 @@ var server = http.createServer (function (req, res) {
     case '/index.html':
       sendFile(res, 'index.html', 'text/html')
       break;
+    case '/home.html':
+      sendFile(res, 'home.html', 'text/html')
+      break;
     case '/about.html':
       sendFile(res, 'about.html', 'text/html')
       break;
+     case '/contact.html':
+      sendFile(res, 'contact.html', 'text/html')
+      break; 
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
       break
     case '/pages.css':
       sendFile(res, 'pages.css', 'text/css')
       break
+    case '/home.css':
+      sendFile(res, 'home.css', 'text/css')
+      break
+    case '/contact.css':
+      sendFile(res, 'contact.css', 'text/css')
+      break  
     case '/table.css':
       sendFile(res, 'table.css', 'text/css')
       break
-    case '/img/background.jpg':
-      sendFile(res, 'img/background.jpg', 'image/jpg')
+    case '/img/noodles.jpg':
+      sendFile(res, 'img/noodles.jpg', 'image/jpg')
       break
+     case '/img/background.jpg':
+      sendFile(res, 'img/background.jpg', 'image/jpg')
+      break 
+    case '/img/potatoes.jpg':
+      sendFile(res, 'img/potatoes.jpg', 'image/jpg')
+      break 
     case '/img/food.jpg':
       sendFile(res, 'img/food.jpg', 'image/jpg')
       break
@@ -73,6 +91,9 @@ var server = http.createServer (function (req, res) {
       break
     case '/img/aura.jpg':
       sendFile(res, 'img/aura.jpg', 'image/jpg')
+      break 
+    case '/img/rice2.jpg':
+      sendFile(res, 'img/rice2.jpg', 'image/jpg')
       break  
     case '/graph':
       if (count == 0){
