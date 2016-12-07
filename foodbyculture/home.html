@@ -58,7 +58,35 @@ function buildList( A, contName ) {
 
   console.log(contName)
 
+
+//   A.sort(function(a, b) {
+//   var nameA = a.key.toUpperCase(); // ignore upper and lowercase
+//   var nameB = b.key.toUpperCase(); // ignore upper and lowercase
+//   if (nameA < nameB) {
+//     return -1;
+//   }
+//   if (nameA > nameB) {
+//     return 1;
+//   }
+
+//   // names must be equal
+//   return 0;
+// });
+
+A.sort(function (a, b) {
+  if (a.value < b.value) {
+    return 1;
+  }
+  if (a.value > b.value) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+  // A.sort();
   var data = A;
+
        d3.select(contName).selectAll('p')
       .data(data)
       .enter().append('p')
