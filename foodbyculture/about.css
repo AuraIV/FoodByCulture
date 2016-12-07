@@ -35,7 +35,7 @@ nav li a:hover{
 
 #content{
   /*background: #E26D5A;*/
-  background: rgba(226, 109, 90, .5);
+  background: rgba(226, 109, 90, .75);
   border-radius: 5px;
   border: solid #EAD7D1 1px;
   text-align: center;
@@ -43,6 +43,8 @@ nav li a:hover{
   margin-left: 100px;
   margin-right: 100px
 }
+
+
 
 #content h1,h2 { 
   vertical-align: middle;
