@@ -95,15 +95,27 @@ var server = http.createServer (function (req, res) {
     case '/img/rice2.jpg':
       sendFile(res, 'img/rice2.jpg', 'image/jpg')
       break  
-    case '/graph':
-      if (count == 0){
+    case '/graphBos':
+      if (count < 2){
       testAPI('Boston, MA')
+    }
+      count += count + 1;
+      var bosGraph = graph;
+      graph = [];
+      var funct = function(){res.end(JSON.stringify(bosGraph));}
+      setTimeout(funct, 2500)
+      
+      break
+
+    case '/graphHou':
+      if (count < 2){
       testAPI('Houston, TX')
     }
       count += count + 1;
-      var funct = function(){res.end(JSON.stringify(graph));}
+      var houGraph = graph;
+      graph = [];
+      var funct = function(){res.end(JSON.stringify(houGraph));}
       setTimeout(funct, 2500)
-      
       break
     default:
       res.end('404 not found')

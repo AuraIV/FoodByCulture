@@ -25,5 +25,54 @@
     
     
     </div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+ makeGet('/graphBos', '#bos');
+ makeGet('/graphHou', '#hou');
+
+
+function makeGet(url, contName) {
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function() {
+    handleRes(req, contName);
+  }
+
+  req.open('GET', url);
+  req.send();
+}
+
+function handleRes(req, contName) {
+
+  if( req.readyState !== XMLHttpRequest.DONE )
+    return;
+
+  if(req.status === 200){
+    buildList( JSON.parse(req.responseText), contName);
+  }
+}
+
+function buildList( A, contName ) {
+
+  if(A.length > 0){
+
+  var data = A;
+       d3.select(contName).selectAll('p')
+      .data(data)
+      .enter().append('p')
+      .text(function(d) { return d.key; }).style('text-align', 'left')
+      .on('mouseenter', function() {
+      console.log("in here!");
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
+      })
+    }
+}
+
+  
+
+</script>
+
 </body>
 </html>

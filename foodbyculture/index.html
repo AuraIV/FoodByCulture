@@ -25,51 +25,5 @@
     <h2>Aura Velarde & Erik Sola</h2>
   </div>
 
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
-
- makeGet('/graph');
-
-function makeGet(url) {
-  var req = new XMLHttpRequest();
-
-  req.onreadystatechange = function() {
-    handleRes(req);
-  }
-
-  req.open('GET', url);
-  req.send();
-}
-
-function handleRes(req) {
-
-  if( req.readyState !== XMLHttpRequest.DONE )
-    return;
-
-  if(req.status === 200){
-    buildList( JSON.parse(req.responseText) );
-  }
-}
-
-function buildList( A ) {
-
-  if(A.length > 0){
-
-  var data = A;
-       d3.select('#content').selectAll('p')
-      .data(data)
-      .enter().append('p')
-      .text(function(d) { return d.key; }).style('text-align', 'left')
-      .on('mouseenter', function() {
-      console.log("in here!");
-        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
-      })
-    }
-}
-
-  
-
-</script>
   </body>
 </html>
