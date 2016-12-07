@@ -43,20 +43,37 @@ cultures.set('Tex-Mex', TexMex)
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
 
-  switch( uri.pathname ) {
+  switch( uri.pathname ) { 
     case '/':
       sendFile(res, 'index.html')
       break
     case '/index.html':
-      contentType = 'text/html'
-      sendFile(res, 'index.html', contentType)
+      sendFile(res, 'index.html', 'text/html')
+      break;
+    case '/about.html':
+      sendFile(res, 'about.html', 'text/html')
       break;
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
       break
+    case '/pages.css':
+      sendFile(res, 'pages.css', 'text/css')
+      break
+    case '/table.css':
+      sendFile(res, 'table.css', 'text/css')
+      break
     case '/img/background.jpg':
       sendFile(res, 'img/background.jpg', 'image/jpg')
-      break 
+      break
+    case '/img/food.jpg':
+      sendFile(res, 'img/food.jpg', 'image/jpg')
+      break
+    case '/img/erik.jpg':
+      sendFile(res, 'img/erik.jpg', 'image/jpg')
+      break
+    case '/img/aura.jpg':
+      sendFile(res, 'img/aura.jpg', 'image/jpg')
+      break  
     case '/graph':
       if (count == 0){
       testAPI('Boston, MA')

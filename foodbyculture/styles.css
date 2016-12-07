@@ -1,14 +1,13 @@
 h1, h2 {
 	color: white;
 	text-align: center;
-/*	font-family: sans-serif;
-*/	/*font-family: 'Chewy', cursive;
-	font-size: 50px;*/
-font-family: 'Amatic SC', cursive;
+	font-family: 'Amatic SC', cursive;
 
 }
 h1{
 	font-size: 60px;
+	font-family: 'Amatic SC', cursive;
+	color: white;
 }
 body{
 	/*font-family: 'Lobster', cursive;*/
@@ -87,4 +86,9 @@ nav li a:hover{
 
 a{
 	text-decoration: none;
+}
+
+img a{
+	border-radius: 5px;
+	border: solid white 2px;
 }
