@@ -19,6 +19,31 @@ float: right;
 	overflow: auto;
 }
 
+#arrow {
+	width: 65px;
+	height: 65px;
+}
+
+table th {
+	font-family: 'Amatic SC', cursive;
+	color:white;
+}
+
+table {
+	width: 100%;
+}
+
+
+#left{
+	float: left;
+}
+
+
+#right{
+	float: right;
+}
+
+
 .bounce {
   position:relative;
  /* left:50%;

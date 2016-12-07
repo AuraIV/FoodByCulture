@@ -95,6 +95,9 @@ var server = http.createServer (function (req, res) {
       break 
     case '/img/rice2.jpg':
       sendFile(res, 'img/rice2.jpg', 'image/jpg')
+      break
+    case '/img/arrow_down.png':
+      sendFile(res, 'img/arrow_down.png', 'image/png')
       break  
     case '/graphBos':
       if (count < 2){

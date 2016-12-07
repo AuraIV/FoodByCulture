@@ -18,11 +18,13 @@
       </nav>
 
      <div id="content">
-     <div id ="bos"> BOSTON GRAPH!
-     <div class="bounce"> test </div>
-     </div>
-
-     <div id="hou"> HOUSTON GRAPH!</div>
+      
+      <table id="tableHeading"><tr>
+        <th id="leftCity"><h2>Boston</h2></th>
+        <th><img src="img/arrow_down.png" class="bounce" id="arrow"></th>
+        <th id="rightCity"><h2>Houston</h2></th></tr></table>
+       <div id ="bos" style="display: none"></div>
+       <div id="hou" style="display: none"></div>
   	 </div>
 
     
@@ -31,10 +33,19 @@
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
-
+  
  makeGet('/graphBos', '#bos');
  makeGet('/graphHou', '#hou');
 
+var arrow = document.getElementById('arrow')
+var boston = document.getElementById('bos')
+var houston = document.getElementById('hou')
+
+/** When clicked it will reveal the graphs */
+arrow.addEventListener('click', function(){
+  boston.style = "display:inline";
+  houston.style = "display:inline";
+});
 
 function makeGet(url, contName) {
   var req = new XMLHttpRequest();
@@ -59,7 +70,6 @@ function handleRes(req, contName) {
 
 function buildList( A, contName ) {
 
-  console.log(contName)
 
 
 //   A.sort(function(a, b) {
