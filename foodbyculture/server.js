@@ -27,7 +27,8 @@ var TexMex = ['tex-mex']
  
 
 var cultures = new Map();
-var graph = [];
+var graphBos = [];
+var graphHou = [];
 var count = 0;
 
 cultures.set('American', American)
@@ -38,7 +39,7 @@ cultures.set('Latin_America', Latin_America)
 cultures.set('French', French)
 cultures.set('Indian', Indian)
 cultures.set('African', African)
-cultures.set('Tex-Mex', TexMex)
+cultures.set('Tex_Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
@@ -97,25 +98,20 @@ var server = http.createServer (function (req, res) {
       break  
     case '/graphBos':
       if (count < 2){
-      testAPI('Boston, MA')
+      testAPI('Boston, MA', graphBos)
     }
-      count += count + 1;
-      var bosGraph = graph;
-      graph = [];
-      var funct = function(){res.end(JSON.stringify(bosGraph));}
-      setTimeout(funct, 2500)
-      
+      count +=  1;
+      var funct = function(){res.end(JSON.stringify(graphBos));}
+      setTimeout(funct, 4500)
       break
 
     case '/graphHou':
       if (count < 2){
-      testAPI('Houston, TX')
+      testAPI('Houston, TX', graphHou)
     }
-      count += count + 1;
-      var houGraph = graph;
-      graph = [];
-      var funct = function(){res.end(JSON.stringify(houGraph));}
-      setTimeout(funct, 2500)
+      count += 1;
+      var funct = function(){res.end(JSON.stringify(graphHou));}
+      setTimeout(funct, 4500)
       break
     default:
       res.end('404 not found')
@@ -130,7 +126,7 @@ function testAPI(city){
 
   yelp.search({ term: 'food', location: city, limit: 40 })
   .then(function (data) {
-    processData(data)
+    processData(data, city)
   })
   .catch(function (err) {
     console.error(err);
@@ -190,7 +186,7 @@ function matchCategory(restaurant){
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  */
-function processData(data){
+function processData(data, city){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
 
@@ -227,7 +223,12 @@ Goes through the list of results to map it to it's corresponding */
     var currentObject = {};
     currentObject.key = key;
     currentObject.value = value;
-    graph.push(currentObject);
+
+    if(city == 'Boston, MA')
+    graphBos.push(currentObject);
+    if(city == 'Houston, TX')
+    graphHou.push(currentObject);
+
   });
 
 }

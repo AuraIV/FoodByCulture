@@ -18,8 +18,8 @@
       </nav>
 
      <div id="content">
-     <div id ="bos"> BOSTON GRAPH! sdfsdfsdfsad fasdfadsfasdfsadfas  dfsdafsdafsadfsdafdsf sadzfsdaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa</div>
-     <div id="hou"> HOUSTON GRAPH! sdfsdfsdfsadfasdfadsfasdfsadfasdfsdafsdafsadfsdafdsfsadzfsda aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa< </div>
+     <div id ="bos"> BOSTON GRAPH!</div>
+     <div id="hou"> HOUSTON GRAPH!</div>
   	 </div>
 
     
@@ -56,7 +56,7 @@ function handleRes(req, contName) {
 
 function buildList( A, contName ) {
 
-  if(A.length > 0){
+  console.log(contName)
 
   var data = A;
        d3.select(contName).selectAll('p')
@@ -64,10 +64,8 @@ function buildList( A, contName ) {
       .enter().append('p')
       .text(function(d) { return d.key; }).style('text-align', 'left')
       .on('mouseenter', function() {
-      console.log("in here!");
         d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
       })
-    }
 }
 
   
