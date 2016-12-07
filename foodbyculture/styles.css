@@ -27,6 +27,9 @@ nav {
   flex-wrap: nowrap;
   width:100%;
   background: rgba(178, 110, 99, .7);
+  border-radius: 5px;
+  border: solid #EAD7D1 1px;
+  margin-bottom: 30px;
 }
 nav li { 
 text-align: center;
@@ -58,17 +61,22 @@ nav li a:hover{
 }
 
 #title{
-	width: 45%;
-	height: 65%;
-	margin-top: 150px;
+	/*width: 45%;
+	height: 65%;*/
+	width: 400px;
+	height: 400px;
+	/*margin-top: 150px;
 	margin-right: auto;
-	margin-left: auto;
-	background-color: #936446;
-	opacity: 0.82;
-	vertical-align: middle;
+	margin-left: auto;*/
+	/*background-color: #936446;
+	opacity: 0.82;*/
+	 background: rgba(178, 110, 99, .82);
+	/*background: rgba(147, 100, 70, .82);*/
+	/*vertical-align: middle;*/
 	border-radius: 5px;
 	border: solid #EAD7D1 1px;
 	text-align: center;
+	margin: 0 auto;
 }
 
 #title h1,h2 { 
