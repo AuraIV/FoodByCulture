@@ -92,7 +92,7 @@ A.sort(function (a, b) {
       .enter().append('p')
       .text(function(d) { return d.key; }).style('text-align', 'left')
       .on('mouseenter', function() {
-        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', 'steelblue')
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#B26E63')
       })
 }
 
