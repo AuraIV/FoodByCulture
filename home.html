@@ -21,44 +21,54 @@
 
      <div id="content">
       
-      <!-- <table id="tableHeading"><tr>
-        <th id="leftCity"> --><!-- <h2>Boston</h2> --><!-- </th> -->
-        <!-- <th> --><!-- <img src="img/arrow_down.png" class="bounce" id="arrow"> --><!-- </th> -->
-        <!-- <th id="rightCity"> --><!-- <h2>Houston</h2> --><!-- </th></tr></table> -->
       <div id ="bosC">
-      <h2>Boston</h2>
-       <div id ="bos" style="display: none">  </div> </div>
+        <h2 id="city1">Boston</h2>
+        <div id ="bos" style="display: none">  
+        </div> 
+      </div>
 
-       <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
+      <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> 
+      </div>
 
       <div id ="houC">
+
+        <h2 id="city2">Houston</h2> 
+        <div id="hou" style="display: none"> </div>
+      </div>
+      
+       
+
       <h2>Houston</h2> 
        <div id="hou" style="display: none"> </div> </div>
 
        <div id ="result" style="display: none"> <h2 align = 'center'> Results </h2> <p> These graphs asses each citie's top 40 results from Yelp. We used the categories to decipher which culture the restaurant belonged to. Our results showed that besides American restaurants, Boston had an astounding amount of Italian restaurants, and Houston had Asian restaurants. <br> For Boston, the results were not very surprising as the second most large acenetry is Italian. With its fame for the Nort End (or little Italy), there is no surprise that their best rated food is Italian. Meanwhile, for Houston, the results were particularly surprising as the Census from 2016 shows that only 6% of the population was Asian.</p> </div>
 
-  	 </div>
+     </div>
 
-    
-    
+
     </div>
 
+    <div id="try" style="display:none">
+        <a href="morecities.html">Try more cities</a>
+    </div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
   
- makeGet('/graphBos', '#bos');
- makeGet('/graphHou', '#hou');
+ makeGet('/graph1/Boston,MA', '#bos');
+ makeGet('/graph2/Houston,TX', '#hou');
 
-var arrow = document.getElementById('arrow')
-var boston = document.getElementById('bos')
-var houston = document.getElementById('hou')
+var arrow = document.getElementById('arrow');
+var boston = document.getElementById('bos');
+var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
+var tryCities = document.getElementById('try');
 var result = document.getElementById('result');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
+  tryCities.style = ""
   result.style = 'display:block';
   bounce[0].style.webkitAnimationPlayState="paused";
   // arrow.style.width = '10%';
@@ -87,7 +97,7 @@ function handleRes(req, contName) {
 }
 
 function buildList( A, contName ) {
-
+console.log(A)
 A.sort(function (a, b) {
   if (a.value < b.value) {
     return 1;
