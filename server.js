@@ -101,6 +101,9 @@ var server = http.createServer (function (req, res) {
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
       break  
+    case '/heatMaps.js':
+      sendFile(res, 'heatMaps.js', 'text/javascript')
+      break  
     case '/graphBos':
       if (count < 2){
       testAPI('Boston, MA', graphBos)
