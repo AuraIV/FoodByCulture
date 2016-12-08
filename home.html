@@ -13,9 +13,11 @@
  <body>
       <nav>
         <ul>
-          <li><a href="home.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home.html">Compare Culture</a></li>
+          <li><a href="morecities.html">Try more cities</a></li>
+          <li><a href="contact.html">Maps</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
        </ul>
       </nav>
 
@@ -35,21 +37,18 @@
         <h2 id="city2">Houston</h2> 
         <div id="hou" style="display: none"> </div>
       </div>
-      
        
+       <div id="hou" style="display: none"> </div>
 
-      <h2>Houston</h2> 
-       <div id="hou" style="display: none"> </div> </div>
+
 
        <div id ="result" style="display: none"> <h2 align = 'center'> Results </h2> <p> These graphs asses each citie's top 40 results from Yelp. We used the categories to decipher which culture the restaurant belonged to. Our results showed that besides American restaurants, Boston had an astounding amount of Italian restaurants, and Houston had Asian restaurants. <br> For Boston, the results were not very surprising as the second most large acenetry is Italian. With its fame for the Nort End (or little Italy), there is no surprise that their best rated food is Italian. Meanwhile, for Houston, the results were particularly surprising as the Census from 2016 shows that only 6% of the population was Asian.</p> </div>
 
      </div>
 
+       
 
-    </div>
 
-    <div id="try" style="display:none">
-        <a href="morecities.html">Try more cities</a>
     </div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -61,14 +60,12 @@ var arrow = document.getElementById('arrow');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
-var tryCities = document.getElementById('try');
 var result = document.getElementById('result');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
-  tryCities.style = ""
   result.style = 'display:block';
   bounce[0].style.webkitAnimationPlayState="paused";
   // arrow.style.width = '10%';

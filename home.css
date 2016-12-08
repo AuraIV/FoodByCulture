@@ -33,6 +33,7 @@ color: white;
 
 #content{
 	overflow: auto;
+	background: rgba(226, 109, 90, .75);
 }
 
 #arrow {

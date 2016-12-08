@@ -69,6 +69,7 @@ table {
     font-size: 175%;
     font-family: 'Amatic SC', cursive;
     color:white;
+    border-radius: 3px;
 }
 
 
@@ -80,6 +81,7 @@ table {
     font-size: 175%;
     font-family: 'Amatic SC', cursive;
     color:white;
+    border-radius: 3px;
 }
 .bounce {
   position:relative;
