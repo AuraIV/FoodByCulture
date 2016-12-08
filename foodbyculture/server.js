@@ -38,10 +38,9 @@ var graphHou = [];
 var graph1 = [];
 var graph2 = [];
 
-=======
 var heatMapBos = [];
 var heatMapHou = [];
->>>>>>> e5a5c1607f3f42f4ec07e8af9caf5b11b2b5d593
+
 var count = 0;
 
 cultures.set('American', American)
