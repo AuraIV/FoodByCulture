@@ -123,7 +123,13 @@ var server = http.createServer (function (req, res) {
       console.log(heatMapBos);
       var funct = function(){res.end(JSON.stringify(heatMapBos));}
       setTimeout(funct, 4500)
-      break  
+      break
+     case '/heatMapHou':
+      HeatMap('Houston, TX')
+      console.log(heatMapHou);
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
+      break   
     default:
       res.end('404 not found')
   }

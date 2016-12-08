@@ -13,19 +13,21 @@
         <ul>
           <li><a href="home.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Maps</a></li>
        </ul>
       </nav>
 
      <div id="content">
 
-     <div id="map"></div>
+     <div id="mapBos"></div>
+     <div id="mapHou"></div>
     
   	</div>
 
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script>
-var mymap = L.map('map').setView([42.36, -71], 13);
+
+var mymap = L.map('mapBos').setView([42.36, -71], 13);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
@@ -33,36 +35,52 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoiYXVyYWl2IiwiYSI6ImNpd2dsbHhpNTAxN2EydWtpbTZxaXlkc3oifQ.nRvu3pgGsCFaa3_rvd537g'
 }).addTo(mymap);
 
+var mymap2 = L.map('mapHou').setView([29.7, -95.4], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'auraiv.2anbb5a9',
+    accessToken: 'pk.eyJ1IjoiYXVyYWl2IiwiYSI6ImNpd2dsbHhpNTAxN2EydWtpbTZxaXlkc3oifQ.nRvu3pgGsCFaa3_rvd537g'
+}).addTo(mymap2);
 
-makeGet('heatMapBos', 'map')
 
-function makeGet(url, contName) {
+makeGet('heatMapBos', 'Bos')
+makeGet('heatMapHou', 'Hou')
+
+function makeGet(url, city) {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function() {
-    handleRes(req, contName);
+    handleRes(req, city);
   }
 
   req.open('GET', url);
   req.send();
 }
 
-function handleRes(req, contName) {
+function handleRes(req, city) {
 
   if( req.readyState !== XMLHttpRequest.DONE )
     return;
 
   if(req.status === 200){
-    buildMap( JSON.parse(req.responseText), contName);
+    buildMap( JSON.parse(req.responseText), city);
   }
 }
 var Arr;
 var i = 1;
 
-function buildMap( A, contName ) {
-
+function buildMap( A, city) {
+if(city == 'Bos'){
 for(var i of A){
 var marker = L.marker([i.lat, i.long]).addTo(mymap);
+}
+}
+if( city == 'Hou'){
+  console.log("here?")
+  for(var i of A){
+var marker = L.marker([i.lat, i.long]).addTo(mymap2);
+}
 }
 
 
