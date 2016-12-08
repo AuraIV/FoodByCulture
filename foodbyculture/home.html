@@ -19,41 +19,44 @@
 
      <div id="content">
       
-      <!-- <table id="tableHeading"><tr>
-        <th id="leftCity"> --><!-- <h2>Boston</h2> --><!-- </th> -->
-        <!-- <th> --><!-- <img src="img/arrow_down.png" class="bounce" id="arrow"> --><!-- </th> -->
-        <!-- <th id="rightCity"> --><!-- <h2>Houston</h2> --><!-- </th></tr></table> -->
       <div id ="bosC">
-      <h2>Boston</h2>
-       <div id ="bos" style="display: none">  </div> </div>
+        <h2 id="city1">Boston</h2>
+        <div id ="bos" style="display: none">  
+        </div> 
+      </div>
 
-       <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
+      <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> 
+      </div>
 
       <div id ="houC">
-      <h2>Houston</h2> 
-       <div id="hou" style="display: none"> </div> </div>
+        <h2 id="city2">Houston</h2> 
+        <div id="hou" style="display: none"> </div>
+      </div>
+      
+       
 
-  	 </div>
-
-    
-    
     </div>
 
+    <div id="try" style="display:none">
+        <a href="morecities.html">Try more cities</a>
+    </div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
   
- makeGet('/graphBos', '#bos');
- makeGet('/graphHou', '#hou');
+ makeGet('/graph1/Boston,MA', '#bos');
+ makeGet('/graph2/Houston,TX', '#hou');
 
-var arrow = document.getElementById('arrow')
-var boston = document.getElementById('bos')
-var houston = document.getElementById('hou')
+var arrow = document.getElementById('arrow');
+var boston = document.getElementById('bos');
+var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
+var tryCities = document.getElementById('try');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
+  tryCities.style = ""
   bounce[0].style.webkitAnimationPlayState="paused";
   // arrow.style.width = '10%';
   arrow.style.float = 'left';
@@ -81,7 +84,7 @@ function handleRes(req, contName) {
 }
 
 function buildList( A, contName ) {
-
+console.log(A)
 A.sort(function (a, b) {
   if (a.value < b.value) {
     return 1;

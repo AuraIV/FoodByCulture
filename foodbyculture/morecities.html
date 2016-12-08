@@ -1,0 +1,213 @@
+<html>
+<body>
+<head>
+ <link rel="stylesheet" type="text/css" href="pages.css">
+ <link rel="stylesheet" type="text/css" href="morecities.css">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+</head>
+ <body>
+      <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+       </ul>
+      </nav>
+
+     <div id="content">
+      
+       
+      <div id ="bosC">
+        <div class = "dropdown">
+          <div id="city1" class="dropbtn" onclick="drop1()">City 1</div>
+            <div id="myDropdown1" class="dropdown-content">
+              <p id="newport1">Newport,RI</p>
+              <p id="seattle1">Seattle,WA</p>
+              <p id="portsmouth1">Portsmouth,NH</p>
+              <p id="miami1">Miami,FL</p>
+            </div>
+        </div>
+        <br>
+        <div id ="bos"></div> 
+      </div>
+
+      <div id ="houC">
+        <div class = "dropdown">
+          <div id="city2" class="dropbtn" onclick="drop2()">City 2</div>
+            <div id="myDropdown2" class="dropdown-content">
+              <p id="newport2">Newport,RI</p>
+              <p id="seattle2">Seattle,WA</p>
+              <p id="portsmouth2">Portsmouth,NH</p>
+              <p id="miami2">Miami,FL</p>
+            </div>
+        </div>
+        <br>
+        <div id ="hou"></div> 
+      </div>
+
+  	 </div>
+
+    
+    
+    </div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+
+// makeGet('/graph1/Boston,MA', '#bos');
+// makeGet('/graph2/Miami,FL', '#hou');
+
+var boston = document.getElementById('bos');
+var houston = document.getElementById('hou');
+var bounce = document.getElementsByClassName('bounce');
+var city1 = document.getElementById('city1');
+var city2 = document.getElementById('city2');
+var el_drop1 = document.getElementById('myDropdown1');
+var el_drop2 = document.getElementById('myDropdown2');
+var newport1 = document.getElementById('newport1');
+var newport2 = document.getElementById('newport2');
+var seattle1 = document.getElementById('seattle1');
+var seattle2 = document.getElementById('seattle2');
+var portsmouth1 = document.getElementById('portsmouth1');
+var portsmouth2 = document.getElementById('portsmouth2');
+var miami1 = document.getElementById('miami1');
+var miami2 = document.getElementById('miami2');
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function drop1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+
+function drop2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+
+newport1.addEventListener('click', function(){
+  document.getElementById('bos').innerHTML = ""
+  city1.innerText = 'Newport, RI'
+  makeGet('/graph1/Newport,RI', '#bos')
+});
+newport2.addEventListener('click', function(){
+  document.getElementById('hou').innerHTML = ""
+  city2.innerText = 'Newport, RI'
+  makeGet('/graph2/Newport,RI', '#hou')
+});
+seattle1.addEventListener('click', function(){
+  document.getElementById('bos').innerHTML = ""
+  city1.innerText = 'Seattle, WA'
+  makeGet('/graph1/Seattle,WA', '#bos')
+});
+seattle2.addEventListener('click', function(){
+  document.getElementById('hou').innerHTML = ""
+  city2.innerText = 'Seattle, WA'
+  makeGet('/graph2/Seattle,WA', '#hou')
+});
+portsmouth1.addEventListener('click', function(){
+  document.getElementById('bos').innerHTML = ""
+  city1.innerText = 'Portsmouth, NH'
+  makeGet('/graph1/Portsmouth,NH', '#bos')
+});
+portsmouth2.addEventListener('click', function(){
+  document.getElementById('hou').innerHTML = ""
+  city2.innerText = 'Portsmouth, NH'
+  makeGet('/graph2/Portsmouth,NH', '#hou')
+});
+miami1.addEventListener('click', function(){
+  document.getElementById('bos').innerHTML = ""
+  city1.innerText = 'Miami, FL'
+  makeGet('/graph1/Miami,FL', '#bos')
+});
+miami2.addEventListener('click', function(){
+  document.getElementById('hou').innerHTML = ""
+  city2.innerText = 'Miami, FL'
+  makeGet('/graph2/Miami,FL', '#hou')
+});
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+/**Click the first city on the left in order to change it
+city1.addEventListener('click', function(){
+  //Add new city here
+  console.log('city1')
+  boston.style = "display:block";
+ 
+  city1.innerText = 'Newport,RI'
+  makeGet('/graph1/Newport,RI', '#bos')
+});
+*/
+
+/**Click the second city on the right in order to change it*/
+
+
+
+function makeGet(url, contName) {
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function() {
+    handleRes(req, contName);
+  }
+
+  req.open('GET', url);
+  req.send();
+}
+
+function handleRes(req, contName) {
+
+  if( req.readyState !== XMLHttpRequest.DONE )
+    return;
+
+  if(req.status === 200){
+    console.log(req.responseText)
+    buildList( JSON.parse(req.responseText), contName);
+  }
+}
+
+function buildList( A, contName ) {
+console.log(A)
+A.sort(function (a, b) {
+  if (a.value < b.value) {
+    return 1;
+  }
+  if (a.value > b.value) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+  // A.sort();
+  var data = A;
+
+       d3.select(contName).selectAll('p')
+      .data(data)
+      .enter().append('p')
+      .text(function(d) { return d.key; }).style('text-align', 'left')
+      .on('mouseenter', function() {
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#B26E63')
+      })
+}
+
+  
+
+</script>
+
+</body>
+</html>

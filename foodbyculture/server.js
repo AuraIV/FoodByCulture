@@ -27,8 +27,16 @@ var TexMex = ['tex-mex']
  
 
 var cultures = new Map();
+var cities = ['Boston,MA', 'Houston,TX', 'Newport,RI', 'Portsmouth,NH', 'Seattle,WA', 'Miami,FL']
+/**
 var graphBos = [];
 var graphHou = [];
+*/
+
+/**These will be the graphs on the left and right, respectivly*/
+var graph1 = [];
+var graph2 = [];
+
 var count = 0;
 
 cultures.set('American', American)
@@ -43,11 +51,22 @@ cultures.set('Tex_Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
+  var city;
+  var cityLeft;
+  var cityRight;
 
+  if(uri.pathname.indexOf('graph1') > -1){
+    city = matchCity(uri.pathname);
+    cityLeft = '/graph1/' + city;
+  }
+  else if(uri.pathname.indexOf('graph2') > -1){
+    city = matchCity(uri.pathname);
+    cityRight = '/graph2/' + city;
+  }
   switch( uri.pathname ) { 
     case '/':
       sendFile(res, 'index.html')
-      break
+      break;
     case '/index.html':
       sendFile(res, 'index.html', 'text/html')
       break;
@@ -57,17 +76,23 @@ var server = http.createServer (function (req, res) {
     case '/about.html':
       sendFile(res, 'about.html', 'text/html')
       break;
-     case '/contact.html':
+    case '/contact.html':
       sendFile(res, 'contact.html', 'text/html')
+      break;
+    case '/morecities.html':
+      sendFile(res, 'morecities.html', 'text/html')
       break; 
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
-      break
+      break;
     case '/pages.css':
       sendFile(res, 'pages.css', 'text/css')
-      break
+      break;
     case '/home.css':
       sendFile(res, 'home.css', 'text/css')
+      break
+    case '/morecities.css':
+      sendFile(res, 'morecities.css', 'text/css')
       break
     case '/contact.css':
       sendFile(res, 'contact.css', 'text/css')
@@ -99,23 +124,37 @@ var server = http.createServer (function (req, res) {
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
       break  
+    case cityLeft:
+      graph1 = []
+      testAPI(city, 1)
+      var funct = function(){res.end(JSON.stringify(graph1));}
+      setTimeout(funct, 4500)
+      break
+    case cityRight:
+        graph2 = []
+        testAPI(city, 2)
+      var funct = function(){res.end(JSON.stringify(graph2));}
+      setTimeout(funct, 4500)
+      break
+      /**
     case '/graphBos':
       if (count < 2){
-      testAPI('Boston, MA', graphBos)
-    }
+        testAPI('Boston, MA', graph1)
+      }
       count +=  1;
-      var funct = function(){res.end(JSON.stringify(graphBos));}
+      var funct = function(){res.end(JSON.stringify(graph1));}
       setTimeout(funct, 4500)
       break
 
     case '/graphHou':
       if (count < 2){
-      testAPI('Houston, TX', graphHou)
-    }
+        testAPI('Houston, TX', graph2)
+      }
       count += 1;
-      var funct = function(){res.end(JSON.stringify(graphHou));}
+      var funct = function(){res.end(JSON.stringify(graph2));}
       setTimeout(funct, 4500)
       break
+      **/
     default:
       res.end('404 not found')
   }
@@ -125,11 +164,11 @@ server.listen(process.env.PORT || port);
 console.log('listening on 8080')
 
 /**Function that gathers the data from the Yelp API. Takes the city name as a parameter */
-function testAPI(city){
-
+function testAPI(city, graphNum){
   yelp.search({ term: 'food', location: city, limit: 40 })
   .then(function (data) {
-    processData(data, city)
+
+    processData(data, city, graphNum)
   })
   .catch(function (err) {
     console.error(err);
@@ -189,10 +228,9 @@ function matchCategory(restaurant){
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  */
-function processData(data, city){
+function processData(data, city, graphNum){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
-
   var flitered_data;
   var results = []
   var final = new Map();
@@ -226,16 +264,27 @@ Goes through the list of results to map it to it's corresponding */
     var currentObject = {};
     currentObject.key = key;
     currentObject.value = value;
-
-    if(city == 'Boston, MA')
-    graphBos.push(currentObject);
-    if(city == 'Houston, TX')
-    graphHou.push(currentObject);
+    if(graphNum == 1){
+      graph1.push(currentObject);
+    }
+    if(graphNum == 2){
+      graph2.push(currentObject);
+    }
 
   });
 
 }
   
+function matchCity(uri){
+  var matchedCity;
+  var city = uri.split('/')[2];
+  if(cities.indexOf(city) > -1){
+    matchedCity = cities[cities.indexOf(city)]
+  
+  }
+
+  return matchedCity;
+}
 
 function sendFile(res, filename, contentType) {
   contentType = contentType || 'text/html'

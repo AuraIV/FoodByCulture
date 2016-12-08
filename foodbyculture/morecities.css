@@ -1,0 +1,151 @@
+body{
+    background-image:url('img/rice2.jpg');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: 100%;
+
+}
+
+#bosC {
+width: 47%;
+float: left;
+    }
+#arr{
+width: 3%;
+float: left;
+}
+#houC {
+width: 46.5%;
+float: right;
+  }
+
+#bos{
+    width: 300px;
+    margin: 0 auto;
+} 
+
+#hou {
+    width: 300px;
+    margin: 0 auto;
+}
+
+#content{
+    height: 500px;
+    overflow: auto;;
+}
+
+#arrow {
+    width: 65px;
+    height: 65px;
+}
+
+table th {
+    font-family: 'Amatic SC', cursive;
+    color:white;
+}
+
+table {
+    width: 100%;
+}
+
+
+#left{
+    float: left;
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;
+}
+
+
+#right{
+    float: right;
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;
+}
+
+#city1 { 
+    float: left;
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;
+}
+
+
+#city2{
+    float: right;
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;    float: right;
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;
+}
+.bounce {
+  position:relative;
+  -webkit-animation:bounce 1s infinite;
+}
+
+.tryCity {
+    font-size: 175%;
+    font-family: 'Amatic SC', cursive;
+    color:white;
+    display:inline;
+}
+
+@-webkit-keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+
+
+
+
+
+
+
+.dropbtn {
+    background-color: #E26D5A;
+    color: white;
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #E78778;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content p:hover {background-color: #ffeee2}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
