@@ -197,6 +197,10 @@ function matchCategory(restaurant){
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  */
+/**
+ * Function to process yelp data and manipulate further
+ * Grabs specific pieces of information such as name, ratings, categories, etc.
+ */
 function processData(data, city){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
@@ -205,10 +209,44 @@ function processData(data, city){
   var results = []
   var final = new Map();
   for(var i = 0; i < yelp_data.length; i++){
-    results.push(matchCategory(yelp_data[i])); 
-    }
+    var rating = yelp_data[i].rating
+    var name = yelp_data[i].name
+    results.push(matchCategory(yelp_data[i]));  
   }  
 
+/**
+Goes through the list of results to map it to it's corresponding */
+ for(i = 0; i < results.length; i++){
+
+      var rest = results[i]; //Particular restaurant's culture
+      // console.log(rest);
+
+      for(j = 0; j < rest.length; j++){
+       // Have we seen this culture before? If so, add one to it as we encountered again
+       //Otherwise, set it to one.
+        if(final.has(rest[j])){
+          final.set(rest[j], final.get(rest[j]) + 1);
+        }
+        else{
+          final.set(rest[j], 1);
+        } 
+    }
+}
+
+//For each element in the key, map it to an object, then to an array of that object
+  final.forEach(function(value,key,final) {
+    var currentObject = {};
+    currentObject.key = key;
+    currentObject.value = value;
+
+    if(city == 'Boston, MA')
+    graphBos.push(currentObject);
+    if(city == 'Houston, TX')
+    graphHou.push(currentObject);
+
+  });
+
+}
  /**
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
