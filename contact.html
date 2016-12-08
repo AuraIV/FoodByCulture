@@ -73,13 +73,13 @@ var i = 1;
 function buildMap( A, city) {
 if(city == 'Bos'){
 for(var i of A){
-var marker = L.marker([i.lat, i.long]).addTo(mymap);
+var marker = L.marker([i.lat, i.long]).addTo(mymap).bindPopup(i.name);
 }
 }
 if( city == 'Hou'){
   console.log("here?")
   for(var i of A){
-var marker = L.marker([i.lat, i.long]).addTo(mymap2);
+var marker = L.marker([i.lat, i.long]).addTo(mymap2) .bindPopup(i.name);
 }
 }
 
