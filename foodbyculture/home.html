@@ -7,6 +7,8 @@
 
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
 </head>
  <body>
       <nav>
@@ -33,6 +35,8 @@
       <h2>Houston</h2> 
        <div id="hou" style="display: none"> </div> </div>
 
+       <div id ="result" style="display: none"> <h2 align = 'center'> Results </h2> <p> These graphs asses each citie's top 40 results from Yelp. We used the categories to decipher which culture the restaurant belonged to. Our results showed that besides American restaurants, Boston had an astounding amount of Italian restaurants, and Houston had Asian restaurants. <br> For Boston, the results were not very surprising as the second most large acenetry is Italian. With its fame for the Nort End (or little Italy), there is no surprise that their best rated food is Italian. Meanwhile, for Houston, the results were particularly surprising as the Census from 2016 shows that only 6% of the population was Asian.</p> </div>
+
   	 </div>
 
     
@@ -49,11 +53,13 @@ var arrow = document.getElementById('arrow')
 var boston = document.getElementById('bos')
 var houston = document.getElementById('hou')
 var bounce = document.getElementsByClassName('bounce');
+var result = document.getElementById('result');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
+  result.style = 'display:block';
   bounce[0].style.webkitAnimationPlayState="paused";
   // arrow.style.width = '10%';
   arrow.style.float = 'left';
@@ -99,7 +105,7 @@ A.sort(function (a, b) {
        d3.select(contName).selectAll('p')
       .data(data)
       .enter().append('p')
-      .text(function(d) { return d.key; }).style('text-align', 'left')
+      .text(function(d) { return d.key }).style('text-align', 'left')
       .on('mouseenter', function() {
         d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#B26E63')
       })

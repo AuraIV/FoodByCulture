@@ -29,6 +29,8 @@ var TexMex = ['tex-mex']
 var cultures = new Map();
 var graphBos = [];
 var graphHou = [];
+var heatMapBos = [];
+var heatMapHou = [];
 var count = 0;
 
 cultures.set('American', American)
@@ -116,6 +118,12 @@ var server = http.createServer (function (req, res) {
       var funct = function(){res.end(JSON.stringify(graphHou));}
       setTimeout(funct, 4500)
       break
+    case '/heatMapBos':
+      HeatMap('Boston, MA')
+      console.log(heatMapBos);
+      var funct = function(){res.end(JSON.stringify(heatMapBos));}
+      setTimeout(funct, 4500)
+      break  
     default:
       res.end('404 not found')
   }
@@ -127,7 +135,7 @@ console.log('listening on 8080')
 /**Function that gathers the data from the Yelp API. Takes the city name as a parameter */
 function testAPI(city){
 
-  yelp.search({ term: 'food', location: city, limit: 40 })
+  yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processData(data, city)
   })
@@ -197,42 +205,44 @@ function processData(data, city){
   var results = []
   var final = new Map();
   for(var i = 0; i < yelp_data.length; i++){
-    var rating = yelp_data[i].rating
-    var name = yelp_data[i].name
-    results.push(matchCategory(yelp_data[i]));  
+    results.push(matchCategory(yelp_data[i])); 
+    }
   }  
 
-/**
-Goes through the list of results to map it to it's corresponding */
- for(i = 0; i < results.length; i++){
+ /**
+ * Function to process yelp data and manipulate further
+ * Grabs specific pieces of information such as name, ratings, categories, etc.
+ * for only the heat map */
 
-      var rest = results[i]; //Particular restaurant's culture
-      // console.log(rest);
+ function HeatMap(city){
 
-      for(j = 0; j < rest.length; j++){
-       // Have we seen this culture before? If so, add one to it as we encountered again
-       //Otherwise, set it to one.
-        if(final.has(rest[j])){
-          final.set(rest[j], final.get(rest[j]) + 1);
-        }
-        else{
-          final.set(rest[j], 1);
-        } 
-    }
+  yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
+  .then(function (data) {
+    processHeat(data, city)
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
 }
 
-//For each element in the key, map it to an object, then to an array of that object
-  final.forEach(function(value,key,final) {
+function processHeat(data, city){
+  //Array of all of the businesses from the yelp response
+  var yelp_data = data.businesses;
+  var results = []
+  for(var i = 0; i < yelp_data.length; i++){
     var currentObject = {};
-    currentObject.key = key;
-    currentObject.value = value;
+    currentObject.name = yelp_data[i].name;
+    currentObject.long = yelp_data[i].location.coordinate.longitude;
+    currentObject.lat = yelp_data[i].location.coordinate.latitude;
+  
+    if(city == 'Boston, MA') {
+      heatMapBos.push(currentObject);
+    }
+    if(city == 'Houston, TX'){
+      heatMapHou.push(currentObject);
 
-    if(city == 'Boston, MA')
-    graphBos.push(currentObject);
-    if(city == 'Houston, TX')
-    graphHou.push(currentObject);
-
-  });
+    }
+  }  
 
 }
   
