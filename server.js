@@ -28,11 +28,6 @@ var TexMex = ['tex-mex']
 
 var cultures = new Map();
 var cities = ['Boston,MA', 'Houston,TX', 'Newport,RI', 'Portsmouth,NH', 'Seattle,WA', 'Miami,FL']
-/**
-var graphBos = [];
-var graphHou = [];
-<<<<<<< HEAD
-*/
 
 /**These will be the graphs on the left and right, respectivly*/
 var graph1 = [];
@@ -140,32 +135,19 @@ var server = http.createServer (function (req, res) {
       var funct = function(){res.end(JSON.stringify(graph2));}
       setTimeout(funct, 4500)
       break
-      /**
-    case '/graphBos':
-      if (count < 2){
-        testAPI('Boston, MA', graph1)
-      }
-      count +=  1;
-      var funct = function(){res.end(JSON.stringify(graph1));}
-      setTimeout(funct, 4500)
-      break
-
-    case '/graphHou':
-      if (count < 2){
-        testAPI('Houston, TX', graph2)
-      }
-      count += 1;
-      var funct = function(){res.end(JSON.stringify(graph2));}
-      setTimeout(funct, 4500)
-      break
-<<<<<<< HEAD
-      **/
     case '/heatMapBos':
       HeatMap('Boston, MA')
-      console.log(heatMapBos);
       var funct = function(){res.end(JSON.stringify(heatMapBos));}
       setTimeout(funct, 4500)
       break  
+    case '/heatMapHou':
+      HeatMap('Houston, TX')
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
+      break 
+    case '/heatMaps.js':
+      sendFile(res, 'heatMaps.js', 'text/javascript')
+      break;     
     default:
       res.end('404 not found')
   }
