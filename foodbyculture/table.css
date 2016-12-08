@@ -1,0 +1,22 @@
+table{
+	margin-left:auto;
+	margin-right:auto;
+}
+td{
+	text-align: center;
+}
+
+.name{
+	 font-family: 'Amatic SC', cursive;
+	 color: white;
+}
+
+.about {
+  font-family: 'Roboto Condensed', sans-serif;
+  color:white;
+}
+
+.round{
+	border-radius: 5px;
+	border: solid white 2px;
+}

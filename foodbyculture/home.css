@@ -1,0 +1,72 @@
+body{
+	background-image:url('img/rice2.jpg');
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size: 100%;
+
+}
+
+#bosC {
+width: 47%;
+float: left;
+    }
+#arr{
+width: 3%;
+float: left;
+}
+#houC {
+width: 46.5%;
+float: right;
+  }
+
+#bos{
+	width: 300px;
+	margin: 0 auto;
+} 
+
+#hou {
+	width: 300px;
+	margin: 0 auto;
+}
+
+#content{
+	overflow: auto;
+}
+
+#arrow {
+	width: 65px;
+	height: 65px;
+}
+
+table th {
+	font-family: 'Amatic SC', cursive;
+	color:white;
+}
+
+table {
+	width: 100%;
+}
+
+
+#left{
+	float: left;
+}
+
+
+#right{
+	float: right;
+}
+
+
+.bounce {
+  position:relative;
+  -webkit-animation:bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+

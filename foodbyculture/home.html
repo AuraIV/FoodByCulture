@@ -1,0 +1,113 @@
+<html>
+<body>
+<head>
+ <link rel="stylesheet" type="text/css" href="pages.css">
+ <link rel="stylesheet" type="text/css" href="home.css">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+</head>
+ <body>
+      <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+       </ul>
+      </nav>
+
+     <div id="content">
+      
+      <!-- <table id="tableHeading"><tr>
+        <th id="leftCity"> --><!-- <h2>Boston</h2> --><!-- </th> -->
+        <!-- <th> --><!-- <img src="img/arrow_down.png" class="bounce" id="arrow"> --><!-- </th> -->
+        <!-- <th id="rightCity"> --><!-- <h2>Houston</h2> --><!-- </th></tr></table> -->
+      <div id ="bosC">
+      <h2>Boston</h2>
+       <div id ="bos" style="display: none">  </div> </div>
+
+       <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
+
+      <div id ="houC">
+      <h2>Houston</h2> 
+       <div id="hou" style="display: none"> </div> </div>
+
+  	 </div>
+
+    
+    
+    </div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+  
+ makeGet('/graphBos', '#bos');
+ makeGet('/graphHou', '#hou');
+
+var arrow = document.getElementById('arrow')
+var boston = document.getElementById('bos')
+var houston = document.getElementById('hou')
+var bounce = document.getElementsByClassName('bounce');
+
+/** When clicked it will reveal the graphs */
+arrow.addEventListener('click', function(){
+  boston.style = "display:block";
+  houston.style = "display:block";
+  bounce[0].style.webkitAnimationPlayState="paused";
+  // arrow.style.width = '10%';
+  arrow.style.float = 'left';
+});
+
+function makeGet(url, contName) {
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function() {
+    handleRes(req, contName);
+  }
+
+  req.open('GET', url);
+  req.send();
+}
+
+function handleRes(req, contName) {
+
+  if( req.readyState !== XMLHttpRequest.DONE )
+    return;
+
+  if(req.status === 200){
+    buildList( JSON.parse(req.responseText), contName);
+  }
+}
+
+function buildList( A, contName ) {
+
+A.sort(function (a, b) {
+  if (a.value < b.value) {
+    return 1;
+  }
+  if (a.value > b.value) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+  // A.sort();
+  var data = A;
+
+       d3.select(contName).selectAll('p')
+      .data(data)
+      .enter().append('p')
+      .text(function(d) { return d.key; }).style('text-align', 'left')
+      .on('mouseenter', function() {
+        d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#B26E63')
+      })
+}
+
+  
+
+</script>
+
+</body>
+</html>
