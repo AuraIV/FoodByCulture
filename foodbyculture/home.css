@@ -9,6 +9,7 @@ body{
 #bosC {
 width: 47%;
 float: left;
+color: white;
     }
 #arr{
 width: 3%;
@@ -17,6 +18,7 @@ float: left;
 #houC {
 width: 46.5%;
 float: right;
+color: white;
   }
 
 #bos{
@@ -36,6 +38,13 @@ float: right;
 #arrow {
 	width: 65px;
 	height: 65px;
+}
+
+#result{
+	clear: both;
+	font-family: 'Roboto Condensed', sans-serif;
+ 	color:white;
+ 	text-align: left;
 }
 
 table th {
