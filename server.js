@@ -27,21 +27,10 @@ var TexMex = ['tex-mex']
  
 
 var cultures = new Map();
-var cities = ['Boston,MA', 'Houston,TX', 'Newport,RI', 'Portsmouth,NH', 'Seattle,WA', 'Miami,FL']
-/**
 var graphBos = [];
 var graphHou = [];
-<<<<<<< HEAD
-*/
-
-/**These will be the graphs on the left and right, respectivly*/
-var graph1 = [];
-var graph2 = [];
-
-=======
 var heatMapBos = [];
 var heatMapHou = [];
->>>>>>> e5a5c1607f3f42f4ec07e8af9caf5b11b2b5d593
 var count = 0;
 
 cultures.set('American', American)
@@ -56,22 +45,11 @@ cultures.set('Tex_Mex', TexMex)
 
 var server = http.createServer (function (req, res) {
   var uri = url.parse(req.url)
-  var city;
-  var cityLeft;
-  var cityRight;
 
-  if(uri.pathname.indexOf('graph1') > -1){
-    city = matchCity(uri.pathname);
-    cityLeft = '/graph1/' + city;
-  }
-  else if(uri.pathname.indexOf('graph2') > -1){
-    city = matchCity(uri.pathname);
-    cityRight = '/graph2/' + city;
-  }
   switch( uri.pathname ) { 
     case '/':
       sendFile(res, 'index.html')
-      break;
+      break
     case '/index.html':
       sendFile(res, 'index.html', 'text/html')
       break;
@@ -81,23 +59,17 @@ var server = http.createServer (function (req, res) {
     case '/about.html':
       sendFile(res, 'about.html', 'text/html')
       break;
-    case '/contact.html':
+     case '/contact.html':
       sendFile(res, 'contact.html', 'text/html')
-      break;
-    case '/morecities.html':
-      sendFile(res, 'morecities.html', 'text/html')
       break; 
     case '/styles.css':
       sendFile(res, 'styles.css', 'text/css')
-      break;
+      break
     case '/pages.css':
       sendFile(res, 'pages.css', 'text/css')
-      break;
+      break
     case '/home.css':
       sendFile(res, 'home.css', 'text/css')
-      break
-    case '/morecities.css':
-      sendFile(res, 'morecities.css', 'text/css')
       break
     case '/contact.css':
       sendFile(res, 'contact.css', 'text/css')
@@ -129,44 +101,38 @@ var server = http.createServer (function (req, res) {
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
       break  
-    case cityLeft:
-      graph1 = []
-      testAPI(city, 1)
-      var funct = function(){res.end(JSON.stringify(graph1));}
-      setTimeout(funct, 4500)
-      break
-    case cityRight:
-        graph2 = []
-        testAPI(city, 2)
-      var funct = function(){res.end(JSON.stringify(graph2));}
-      setTimeout(funct, 4500)
-      break
-      /**
+    case '/heatMaps.js':
+      sendFile(res, 'heatMaps.js', 'text/javascript')
+      break  
     case '/graphBos':
       if (count < 2){
-        testAPI('Boston, MA', graph1)
-      }
+      testAPI('Boston, MA', graphBos)
+    }
       count +=  1;
-      var funct = function(){res.end(JSON.stringify(graph1));}
+      var funct = function(){res.end(JSON.stringify(graphBos));}
       setTimeout(funct, 4500)
       break
 
     case '/graphHou':
       if (count < 2){
-        testAPI('Houston, TX', graph2)
-      }
+      testAPI('Houston, TX', graphHou)
+    }
       count += 1;
-      var funct = function(){res.end(JSON.stringify(graph2));}
+      var funct = function(){res.end(JSON.stringify(graphHou));}
       setTimeout(funct, 4500)
       break
-<<<<<<< HEAD
-      **/
     case '/heatMapBos':
       HeatMap('Boston, MA')
       console.log(heatMapBos);
       var funct = function(){res.end(JSON.stringify(heatMapBos));}
       setTimeout(funct, 4500)
-      break  
+      break
+     case '/heatMapHou':
+      HeatMap('Houston, TX')
+      console.log(heatMapHou);
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
+      break   
     default:
       res.end('404 not found')
   }
@@ -176,12 +142,11 @@ server.listen(process.env.PORT || port);
 console.log('listening on 8080')
 
 /**Function that gathers the data from the Yelp API. Takes the city name as a parameter */
-function testAPI(city, graphNum){
+function testAPI(city){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
-
-    processData(data, city, graphNum)
+    processData(data, city)
   })
   .catch(function (err) {
     console.error(err);
@@ -241,16 +206,26 @@ function matchCategory(restaurant){
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  */
-function processData(data, city, graphNum){
+/**
+ * Function to process yelp data and manipulate further
+ * Grabs specific pieces of information such as name, ratings, categories, etc.
+ */
+function processData(data, city){
   //Array of all of the businesses from the yelp response
   var yelp_data = data.businesses;
+
   var flitered_data;
   var results = []
   var final = new Map();
   for(var i = 0; i < yelp_data.length; i++){
-    results.push(matchCategory(yelp_data[i])); 
-    }
-for(i = 0; i < results.length; i++){
+    var rating = yelp_data[i].rating
+    var name = yelp_data[i].name
+    results.push(matchCategory(yelp_data[i]));  
+  }  
+
+/**
+Goes through the list of results to map it to it's corresponding */
+ for(i = 0; i < results.length; i++){
 
       var rest = results[i]; //Particular restaurant's culture
       // console.log(rest);
@@ -272,17 +247,15 @@ for(i = 0; i < results.length; i++){
     var currentObject = {};
     currentObject.key = key;
     currentObject.value = value;
-    if(graphNum == 1){
-      graph1.push(currentObject);
-    }
-    if(graphNum == 2){
-      graph2.push(currentObject);
-    }
+
+    if(city == 'Boston, MA')
+    graphBos.push(currentObject);
+    if(city == 'Houston, TX')
+    graphHou.push(currentObject);
 
   });
 
 }
-
  /**
  * Function to process yelp data and manipulate further
  * Grabs specific pieces of information such as name, ratings, categories, etc.
@@ -320,16 +293,6 @@ function processHeat(data, city){
 
 }
   
-function matchCity(uri){
-  var matchedCity;
-  var city = uri.split('/')[2];
-  if(cities.indexOf(city) > -1){
-    matchedCity = cities[cities.indexOf(city)]
-  
-  }
-
-  return matchedCity;
-}
 
 function sendFile(res, filename, contentType) {
   contentType = contentType || 'text/html'
