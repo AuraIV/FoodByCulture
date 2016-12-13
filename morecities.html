@@ -66,8 +66,6 @@
 var arr = document.getElementById('arr');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
-console.log("Boston length: " + boston.innerText);
-console.log("Houston length: " + houston.innerText);
 var bounce = document.getElementsByClassName('bounce');
 var city1 = document.getElementById('city1');
 var city2 = document.getElementById('city2');
@@ -85,44 +83,15 @@ var miami2 = document.getElementById('miami2');
 
 var toggleArr = 0;
 
-arr.addEventListener('click', function(){
-  if(toggleArr == 0){
-
-    while(boston.innerText == ''){
-      boston.innerHTML = '<img src="img/loading.gif">';
-    }
-    boston.style = "display:block";
-    houston.style = "display:block";
-
-    console.log("Boston length: " + boston.innerText);
-    console.log("Houston length: " + houston.innerText);
-
-    bounce[0].style.webkitAnimationPlayState="paused";
-    toggleArr = 1;
-  }
-  // arrow.style.width = '10%';
-  arr.style.float = 'left';
+/** When clicked it will reveal the graphs */
+arrow.addEventListener('click', function(){
+  boston.style = "display:block";
+  houston.style = "display:block";
+  result.style = 'display:block';
+  bounce[0].style.webkitAnimationPlayState="paused";
+  arrow.style.float = 'left';
 });
 
-/**
-city1.addEventListener('click', function(){
-  if(toggleArr == 1){
-    boston.style = "display:none";
-    houston.style = "display:none";
-    bounce[0].style.webkitAnimationPlayState="running";
-    toggleArr = 0;
-  }
-});
-
-city2.addEventListener('click', function(){
-  if(toggleArr == 1){
-    boston.style = "display:none";
-    houston.style = "display:none";
-    bounce[0].style.webkitAnimationPlayState="running";
-    toggleArr = 0;
-  }
-});
-*/
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function drop1() {
