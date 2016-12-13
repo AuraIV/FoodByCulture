@@ -289,6 +289,7 @@ for(i = 0; i < results.length; i++){
     if(city == 'Houston, TX'){
       res.end(JSON.stringify(heatMapHou))
     }
+    res.end();
   })
   .catch(function (err) {
     console.error(err);
