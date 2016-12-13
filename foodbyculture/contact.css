@@ -1,0 +1,24 @@
+body{
+	background-image:url('img/potatoes.jpg');
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size: 100%;
+}
+
+#content{
+	overflow: auto;
+}
+
+ #mapBos {
+        height: 50%;
+      }
+ #mapHou {
+        height: 50%;
+       /* float: right;*/
+      }
+      /* Optional: Makes the sample page fill the window. */
+ html, body {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+  }

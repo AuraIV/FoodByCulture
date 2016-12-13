@@ -50,7 +50,7 @@ var marker = L.marker([i.lat, i.long]).addTo(mymap).bindPopup(i.name);
 }
 }
 if( city == 'Hou'){
-  
+  console.log("here?")
   for(var i of A){
 var marker = L.marker([i.lat, i.long]).addTo(mymap2) .bindPopup(i.name);
 }

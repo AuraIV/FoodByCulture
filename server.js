@@ -140,13 +140,13 @@ var server = http.createServer (function (req, res) {
       break
     case '/heatMapBos':
       HeatMap('Boston, MA')
-      var funct = function(){res.end(JSON.stringify(heatMapBos));}
-      setTimeout(funct, 4500)
+      // var funct = function(){res.end(JSON.stringify(heatMapBos));}
+      // setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
       HeatMap('Houston, TX')
-      var funct = function(){res.end(JSON.stringify(heatMapHou));}
-      setTimeout(funct, 4500)
+      // var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      // setTimeout(funct, 4500)
       break 
     case '/heatMaps.js':
       sendFile(res, 'heatMaps.js', 'text/javascript')
@@ -287,13 +287,13 @@ for(i = 0; i < results.length; i++){
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
-    // console.log(city)
-    // if(city == 'Boston, MA'){
-    //   res.end(JSON.stringify(heatMapBos))
-    // }
-    // if(city == 'Houston, TX'){
-    //   res.end(JSON.stringify(heatMapHou))
-    // }
+    console.log(city)
+    if(city == 'Boston, MA'){
+      res.end(JSON.stringify(heatMapBos))
+    }
+    if(city == 'Houston, TX'){
+      res.end(JSON.stringify(heatMapHou))
+    }
   })
   .catch(function (err) {
     console.error(err);

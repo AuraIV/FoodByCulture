@@ -1,0 +1,53 @@
+body{
+  background-image:url('img/noodles.jpg');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size: 100%;
+}
+
+nav {
+  list-style-type:none;
+  flex-wrap: nowrap;
+  width:100%;
+  background: rgba(178, 110, 99, .6);
+  border-radius: 5px;
+  border: solid #EAD7D1 1px;
+  margin-bottom: 30px;
+}
+nav li { 
+text-align: center;
+display: inline-block; 
+font-size: 30px;
+color: white;
+text-decoration: none;
+ width:18%;
+ font-family: 'Amatic SC', cursive;
+}
+
+nav li a{
+	text-decoration: none;
+	color: white
+
+}
+
+nav li a:hover{
+	font-size: 25px;
+	
+}
+
+#content{
+  /*background: #E26D5A;*/
+  background: rgba(226, 109, 90, .5);
+  border-radius: 5px;
+  border: solid #EAD7D1 1px;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 100px;
+  margin-right: 100px
+}
+
+#content h1,h2 { 
+  vertical-align: middle;
+  color: white;
+   font-family: 'Amatic SC', cursive;
+}
