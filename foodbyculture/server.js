@@ -135,6 +135,7 @@ var server = http.createServer (function (req, res) {
       testAPI(city, 2, res)
       break
     case '/heatMapBos':
+    console.log("here???")
       HeatMap('Boston, MA', res)
       // var funct = function(){res.end(JSON.stringify(heatMapBos));}
       // setTimeout(funct, 4500)
@@ -278,7 +279,7 @@ for(i = 0; i < results.length; i++){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
-    console.log(city)
+
     processHeat(data, city)
 
     if(city == 'Boston, MA'){
