@@ -122,6 +122,9 @@ var server = http.createServer (function (req, res) {
       break
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
+      break
+    case '/img/loading.gif':
+      sendFile(res, 'img/loading.gif', 'image/gif')
       break  
     case cityLeft:
       graph1 = []
@@ -276,6 +279,7 @@ for(i = 0; i < results.length; i++){
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
+    console.log(city)
     if(city == 'Boston, MA'){
       res.end(JSON.stringify(heatMapBos))
     }

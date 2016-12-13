@@ -9,8 +9,12 @@ body{
 	overflow: auto;
 }
 
- #map {
-        height: 100%;
+ #mapBos {
+        height: 50%;
+      }
+ #mapHou {
+        height: 50%;
+       /* float: right;*/
       }
       /* Optional: Makes the sample page fill the window. */
  html, body {

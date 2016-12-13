@@ -9,6 +9,7 @@ body{
 #bosC {
 width: 47%;
 float: left;
+color:white;
     }
 #arr{
 width: 3%;
@@ -17,6 +18,7 @@ float: left;
 #houC {
 width: 46.5%;
 float: right;
+color:white;
   }
 
 #bos{
@@ -30,8 +32,8 @@ float: right;
 }
 
 #content{
-    height: 500px;
-    overflow: auto;;
+    height: 450px;
+    background: rgba(226, 109, 90, .75);
 }
 
 #arrow {
@@ -69,6 +71,7 @@ table {
     font-size: 175%;
     font-family: 'Amatic SC', cursive;
     color:white;
+    border-radius: 3px;
 }
 
 
@@ -80,6 +83,7 @@ table {
     font-size: 175%;
     font-family: 'Amatic SC', cursive;
     color:white;
+    border-radius: 3px;
 }
 .bounce {
   position:relative;
@@ -99,10 +103,6 @@ table {
   50%      { bottom:20px; }
   100%     {bottom:0;}
 }
-
-
-
-
 
 
 
@@ -133,6 +133,7 @@ table {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+    color:black;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
@@ -148,4 +149,4 @@ table {
 .dropdown-content p:hover {background-color: #ffeee2}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {display:inline-block;}
