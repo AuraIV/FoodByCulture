@@ -276,6 +276,7 @@ for(i = 0; i < results.length; i++){
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
+    console.log(city)
     if(city == 'Boston, MA'){
       res.end(JSON.stringify(heatMapBos))
     }
