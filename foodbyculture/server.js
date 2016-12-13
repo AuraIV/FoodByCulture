@@ -135,13 +135,11 @@ var server = http.createServer (function (req, res) {
       testAPI(city, 2, res)
       break
     case '/heatMapBos':
-    console.log("here???")
       HeatMap('Boston, MA', res)
       var funct = function(){res.end(JSON.stringify(heatMapBos));}
       setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
-    onsole.log("here??? H")
       HeatMap('Houston, TX', res)
       var funct = function(){res.end(JSON.stringify(heatMapHou));}
       setTimeout(funct, 4500)
