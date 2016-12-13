@@ -122,6 +122,9 @@ var server = http.createServer (function (req, res) {
       break
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
+      break
+    case '/img/loading.gif':
+      sendFile(res, 'img/loading.gif', 'image/gif')
       break  
     case cityLeft:
       graph1 = []

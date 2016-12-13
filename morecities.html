@@ -33,9 +33,10 @@
             </div>
         </div>
         <br>
-        <div id ="bos"></div> 
-      </div>
+        <div id ="bos" style="display:none"></div> 
 
+      </div>
+      <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
       <div id ="houC">
         <div class = "dropdown">
           <div id="city2" class="dropbtn" onclick="drop2()">City 2</div>
@@ -47,7 +48,7 @@
             </div>
         </div>
         <br>
-        <div id ="hou"></div> 
+        <div id ="hou" style="display:none"></div> 
       </div>
 
   	 </div>
@@ -62,9 +63,11 @@
 
 // makeGet('/graph1/Boston,MA', '#bos');
 // makeGet('/graph2/Miami,FL', '#hou');
-
+var arr = document.getElementById('arr');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
+console.log("Boston length: " + boston.innerText);
+console.log("Houston length: " + houston.innerText);
 var bounce = document.getElementsByClassName('bounce');
 var city1 = document.getElementById('city1');
 var city2 = document.getElementById('city2');
@@ -79,6 +82,47 @@ var portsmouth2 = document.getElementById('portsmouth2');
 var miami1 = document.getElementById('miami1');
 var miami2 = document.getElementById('miami2');
 
+
+var toggleArr = 0;
+
+arr.addEventListener('click', function(){
+  if(toggleArr == 0){
+
+    while(boston.innerText == ''){
+      boston.innerHTML = '<img src="img/loading.gif">';
+    }
+    boston.style = "display:block";
+    houston.style = "display:block";
+
+    console.log("Boston length: " + boston.innerText);
+    console.log("Houston length: " + houston.innerText);
+
+    bounce[0].style.webkitAnimationPlayState="paused";
+    toggleArr = 1;
+  }
+  // arrow.style.width = '10%';
+  arr.style.float = 'left';
+});
+
+/**
+city1.addEventListener('click', function(){
+  if(toggleArr == 1){
+    boston.style = "display:none";
+    houston.style = "display:none";
+    bounce[0].style.webkitAnimationPlayState="running";
+    toggleArr = 0;
+  }
+});
+
+city2.addEventListener('click', function(){
+  if(toggleArr == 1){
+    boston.style = "display:none";
+    houston.style = "display:none";
+    bounce[0].style.webkitAnimationPlayState="running";
+    toggleArr = 0;
+  }
+});
+*/
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function drop1() {
