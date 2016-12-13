@@ -126,24 +126,20 @@ var server = http.createServer (function (req, res) {
     case cityLeft:
       graph1 = []
       testAPI(city, 1, res)
-      // var funct = function(){res.end(JSON.stringify(graph1));}
-      // setTimeout(funct, 4500)
       break
     case cityRight:
         graph2 = []
         testAPI(city, 2, res)
-      // var funct = function(){res.end(JSON.stringify(graph2));}
-      // setTimeout(funct, 4500)
       break
     case '/heatMapBos':
-      HeatMap('Boston, MA')
-      var funct = function(){res.end(JSON.stringify(heatMapBos));}
-      setTimeout(funct, 4500)
+      HeatMap('Boston, MA', res)
+      // var funct = function(){res.end(JSON.stringify(heatMapBos));}
+      // setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
-      HeatMap('Houston, TX')
-      var funct = function(){res.end(JSON.stringify(heatMapHou));}
-      setTimeout(funct, 4500)
+      HeatMap('Houston, TX', res)
+      // var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      // setTimeout(funct, 4500)
       break 
     case '/heatMaps.js':
       sendFile(res, 'heatMaps.js', 'text/javascript')
@@ -275,11 +271,17 @@ for(i = 0; i < results.length; i++){
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  * for only the heat map */
 
- function HeatMap(city){
+ function HeatMap(city, res){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
+    if(city == 'Boston, MA'){
+      res.end(JSON.stringify(heatMapBos))
+    }
+    if(city == 'Houston, TX'){
+      res.end(JSON.stringify(heatMapHou))
+    }
   })
   .catch(function (err) {
     console.error(err);
