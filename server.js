@@ -122,6 +122,9 @@ var server = http.createServer (function (req, res) {
       break
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
+      break
+    case '/img/loading.gif':
+      sendFile(res, 'img/loading.gif', 'image/gif')
       break  
     case cityLeft:
       graph1 = []
@@ -137,13 +140,13 @@ var server = http.createServer (function (req, res) {
       break
     case '/heatMapBos':
       HeatMap('Boston, MA')
-      // var funct = function(){res.end(JSON.stringify(heatMapBos));}
-      // setTimeout(funct, 4500)
+      var funct = function(){res.end(JSON.stringify(heatMapBos));}
+      setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
       HeatMap('Houston, TX')
-      // var funct = function(){res.end(JSON.stringify(heatMapHou));}
-      // setTimeout(funct, 4500)
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
       break 
     case '/heatMaps.js':
       sendFile(res, 'heatMaps.js', 'text/javascript')
@@ -163,6 +166,7 @@ function testAPI(city, graphNum, res){
   .then(function (data) {
 
     processData(data, city, graphNum)
+
   if(graphNum == 1){
     // console.log(graph1)
    res.end(JSON.stringify(graph1));
@@ -170,6 +174,7 @@ function testAPI(city, graphNum, res){
   if(graphNum == 2){
      res.end(JSON.stringify(graph2));
   }
+
 
   })
   .catch(function (err) {
@@ -277,11 +282,18 @@ for(i = 0; i < results.length; i++){
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  * for only the heat map */
 
- function HeatMap(city){
+ function HeatMap(city, res){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
+    // console.log(city)
+    // if(city == 'Boston, MA'){
+    //   res.end(JSON.stringify(heatMapBos))
+    // }
+    // if(city == 'Houston, TX'){
+    //   res.end(JSON.stringify(heatMapHou))
+    // }
   })
   .catch(function (err) {
     console.error(err);

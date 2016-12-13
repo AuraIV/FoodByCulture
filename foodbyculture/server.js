@@ -28,11 +28,6 @@ var TexMex = ['tex-mex']
 
 var cultures = new Map();
 var cities = ['Boston,MA', 'Houston,TX', 'Newport,RI', 'Portsmouth,NH', 'Seattle,WA', 'Miami,FL']
-/**
-var graphBos = [];
-var graphHou = [];
-<<<<<<< HEAD
-*/
 
 /**These will be the graphs on the left and right, respectivly*/
 var graph1 = [];
@@ -127,45 +122,35 @@ var server = http.createServer (function (req, res) {
       break
     case '/img/arrow_down.png':
       sendFile(res, 'img/arrow_down.png', 'image/png')
+      break
+    case '/img/loading.gif':
+      sendFile(res, 'img/loading.gif', 'image/gif')
       break  
     case cityLeft:
       graph1 = []
-      testAPI(city, 1)
-      var funct = function(){res.end(JSON.stringify(graph1));}
-      setTimeout(funct, 4500)
+      testAPI(city, 1,res)
+      // var funct = function(){res.end(JSON.stringify(graph1));}
+      // setTimeout(funct, 4500)
       break
     case cityRight:
         graph2 = []
-        testAPI(city, 2)
-      var funct = function(){res.end(JSON.stringify(graph2));}
-      setTimeout(funct, 4500)
+        testAPI(city, 2,res)
+      // var funct = function(){res.end(JSON.stringify(graph2));}
+      // setTimeout(funct, 4500)
       break
-      /**
-    case '/graphBos':
-      if (count < 2){
-        testAPI('Boston, MA', graph1)
-      }
-      count +=  1;
-      var funct = function(){res.end(JSON.stringify(graph1));}
-      setTimeout(funct, 4500)
-      break
-
-    case '/graphHou':
-      if (count < 2){
-        testAPI('Houston, TX', graph2)
-      }
-      count += 1;
-      var funct = function(){res.end(JSON.stringify(graph2));}
-      setTimeout(funct, 4500)
-      break
-<<<<<<< HEAD
-      **/
     case '/heatMapBos':
       HeatMap('Boston, MA')
-      console.log(heatMapBos);
       var funct = function(){res.end(JSON.stringify(heatMapBos));}
       setTimeout(funct, 4500)
       break  
+    case '/heatMapHou':
+      HeatMap('Houston, TX')
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
+      break 
+    case '/heatMaps.js':
+      sendFile(res, 'heatMaps.js', 'text/javascript')
+      break;     
     default:
       res.end('404 not found')
   }
@@ -175,12 +160,22 @@ server.listen(process.env.PORT || port);
 console.log('listening on 8080')
 
 /**Function that gathers the data from the Yelp API. Takes the city name as a parameter */
-function testAPI(city, graphNum){
+function testAPI(city, graphNum, res){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
 
     processData(data, city, graphNum)
+
+  if(graphNum == 1){
+    // console.log(graph1)
+   res.end(JSON.stringify(graph1));
+  }
+  if(graphNum == 2){
+     res.end(JSON.stringify(graph2));
+  }
+
+
   })
   .catch(function (err) {
     console.error(err);
@@ -287,11 +282,18 @@ for(i = 0; i < results.length; i++){
  * Grabs specific pieces of information such as name, ratings, categories, etc.
  * for only the heat map */
 
- function HeatMap(city){
+ function HeatMap(city, res){
 
   yelp.search({ term: 'food', location: city, limit: 40, sort: 2 })
   .then(function (data) {
     processHeat(data, city)
+    // console.log(city)
+    // if(city == 'Boston, MA'){
+    //   res.end(JSON.stringify(heatMapBos))
+    // }
+    // if(city == 'Houston, TX'){
+    //   res.end(JSON.stringify(heatMapHou))
+    // }
   })
   .catch(function (err) {
     console.error(err);

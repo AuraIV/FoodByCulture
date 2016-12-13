@@ -1,33 +1,4 @@
-<html>
-<body>
-<head>
- <link rel="stylesheet" type="text/css" href="pages.css">
- <link rel="stylesheet" type="text/css" href="contact.css">
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-
-</head>
- <body>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="home.html">Compare Culture</a></li>
-          <li><a href="morecities.html">Try more cities</a></li>
-          <li><a href="contact.html">Maps</a></li>
-          <li><a href="about.html">About Us</a></li>
-       </ul>
-      </nav>
-
-     <div id="content">
-
-     <div id="mapBos"></div>
-     <div id="mapHou"></div>
-    
-  	</div>
-
-<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-<script>
+console.log("Here?")
 
 var mymap = L.map('mapBos').setView([42.36, -71], 13);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -73,15 +44,13 @@ var Arr;
 var i = 1;
 
 function buildMap( A, city) {
-    console.log("here?")
-  console.log(A)
 if(city == 'Bos'){
 for(var i of A){
 var marker = L.marker([i.lat, i.long]).addTo(mymap).bindPopup(i.name);
 }
 }
 if( city == 'Hou'){
-  console.log("here?")
+  )
   for(var i of A){
 var marker = L.marker([i.lat, i.long]).addTo(mymap2) .bindPopup(i.name);
 }
@@ -90,8 +59,3 @@ var marker = L.marker([i.lat, i.long]).addTo(mymap2) .bindPopup(i.name);
 
 }
 
-
-</script>
-<!-- <script src="/heatMaps.js"> </script> -->
-</body>
-</html>
