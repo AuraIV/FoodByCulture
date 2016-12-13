@@ -32,7 +32,8 @@ color:white;
 }
 
 #content{
-    height: 450px;
+   /* height: 450px;*/
+   min-height: 70px;
     background: rgba(226, 109, 90, .75);
 }
 

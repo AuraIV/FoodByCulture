@@ -32,7 +32,8 @@ color: white;
 }
 
 #content{
-	overflow: auto;
+/*	overflow: auto;*/
+	min-height: 70px;
 	background: rgba(226, 109, 90, .75);
 }
 

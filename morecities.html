@@ -79,6 +79,7 @@ var portsmouth1 = document.getElementById('portsmouth1');
 var portsmouth2 = document.getElementById('portsmouth2');
 var miami1 = document.getElementById('miami1');
 var miami2 = document.getElementById('miami2');
+var content = document.getElementById('content');
 
 
 var toggleArr = 0;
@@ -87,7 +88,9 @@ var toggleArr = 0;
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
-  result.style = 'display:block';
+  // result.style = 'display:block';
+  content.style.height = '300px'
+
   bounce[0].style.webkitAnimationPlayState="paused";
   arrow.style.float = 'left';
 });
