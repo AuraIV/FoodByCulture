@@ -44,6 +44,7 @@ var Arr;
 var i = 1;
 
 function buildMap( A, city) {
+    console.log("here?")
   console.log(A)
 if(city == 'Bos'){
 for(var i of A){
