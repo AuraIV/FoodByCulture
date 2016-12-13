@@ -131,8 +131,8 @@ var server = http.createServer (function (req, res) {
       testAPI(city, 1, res)
       break
     case cityRight:
-        graph2 = []
-        testAPI(city, 2, res)
+      graph2 = []
+      testAPI(city, 2, res)
       break
     case '/heatMapBos':
       HeatMap('Boston, MA', res)
