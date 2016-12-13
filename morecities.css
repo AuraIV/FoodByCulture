@@ -37,6 +37,13 @@ color:white;
     background: rgba(226, 109, 90, .75);
 }
 
+#content:after {
+  content: " ";
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+
 #arrow {
     width: 65px;
     height: 65px;
