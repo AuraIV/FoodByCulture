@@ -58,13 +58,6 @@ table {
     color:white;
 }
 
-#myDropdown1 {
-
-}
-
-#myDropdown2{
-
-}
 
 #right{
     float: right;
@@ -113,10 +106,6 @@ table {
 
 
 
-
-
-
-
 .dropbtn {
     background-color: #E26D5A;
     color: white;
@@ -160,4 +149,4 @@ table {
 .dropdown-content p:hover {background-color: #ffeee2}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {display:inline-block;}
