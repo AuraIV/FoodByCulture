@@ -141,13 +141,14 @@ var server = http.createServer (function (req, res) {
       // setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
+    onsole.log("here??? H")
       HeatMap('Houston, TX', res)
       // var funct = function(){res.end(JSON.stringify(heatMapHou));}
       // setTimeout(funct, 4500)
       break 
-    case '/heatMaps.js':
-      sendFile(res, 'heatMaps.js', 'text/javascript')
-      break;     
+    // case '/heatMaps.js':
+    //   sendFile(res, 'heatMaps.js', 'text/javascript')
+    //   break;     
     default:
       res.end('404 not found')
   }
