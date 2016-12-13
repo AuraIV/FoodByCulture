@@ -33,9 +33,10 @@
             </div>
         </div>
         <br>
-        <div id ="bos"></div> 
-      </div>
+        <div id ="bos" style="display:none"></div> 
 
+      </div>
+      <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
       <div id ="houC">
         <div class = "dropdown">
           <div id="city2" class="dropbtn" onclick="drop2()">City 2</div>
@@ -47,7 +48,7 @@
             </div>
         </div>
         <br>
-        <div id ="hou"></div> 
+        <div id ="hou" style="display:none"></div> 
       </div>
 
   	 </div>
@@ -62,7 +63,7 @@
 
 // makeGet('/graph1/Boston,MA', '#bos');
 // makeGet('/graph2/Miami,FL', '#hou');
-
+var arr = document.getElementById('arr');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
@@ -78,6 +79,18 @@ var portsmouth1 = document.getElementById('portsmouth1');
 var portsmouth2 = document.getElementById('portsmouth2');
 var miami1 = document.getElementById('miami1');
 var miami2 = document.getElementById('miami2');
+
+
+var toggleArr = 0;
+
+/** When clicked it will reveal the graphs */
+arrow.addEventListener('click', function(){
+  boston.style = "display:block";
+  houston.style = "display:block";
+  result.style = 'display:block';
+  bounce[0].style.webkitAnimationPlayState="paused";
+  arrow.style.float = 'left';
+});
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
