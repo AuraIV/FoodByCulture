@@ -140,6 +140,7 @@ var server = http.createServer (function (req, res) {
       // setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
+    console.log("Here?")
       HeatMap('Houston, TX', res)
       // var funct = function(){res.end(JSON.stringify(heatMapHou));}
       // setTimeout(funct, 4500)
