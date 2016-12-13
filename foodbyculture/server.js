@@ -137,14 +137,14 @@ var server = http.createServer (function (req, res) {
     case '/heatMapBos':
     console.log("here???")
       HeatMap('Boston, MA', res)
-      // var funct = function(){res.end(JSON.stringify(heatMapBos));}
-      // setTimeout(funct, 4500)
+      var funct = function(){res.end(JSON.stringify(heatMapBos));}
+      setTimeout(funct, 4500)
       break  
     case '/heatMapHou':
     onsole.log("here??? H")
       HeatMap('Houston, TX', res)
-      // var funct = function(){res.end(JSON.stringify(heatMapHou));}
-      // setTimeout(funct, 4500)
+      var funct = function(){res.end(JSON.stringify(heatMapHou));}
+      setTimeout(funct, 4500)
       break 
     // case '/heatMaps.js':
     //   sendFile(res, 'heatMaps.js', 'text/javascript')
@@ -283,13 +283,13 @@ for(i = 0; i < results.length; i++){
 
     processHeat(data, city)
 
-    if(city == 'Boston, MA'){
-      res.end(JSON.stringify(heatMapBos))
-    }
-    if(city == 'Houston, TX'){
-      res.end(JSON.stringify(heatMapHou))
-    }
-    res.end();
+    // if(city == 'Boston, MA'){
+    //   res.end(JSON.stringify(heatMapBos))
+    // }
+    // if(city == 'Houston, TX'){
+    //   res.end(JSON.stringify(heatMapHou))
+    // }
+    // res.end();
   })
   .catch(function (err) {
     console.error(err);
