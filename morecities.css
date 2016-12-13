@@ -74,6 +74,7 @@ table {
 }
 
 #city1 { 
+
     float: left;
     font-size: 175%;
     font-family: 'Amatic SC', cursive;
@@ -85,6 +86,7 @@ table {
 #city2{
     float: right;
     font-size: 175%;
+    background-color: #E26D5A;
     font-family: 'Amatic SC', cursive;
     color:white;    float: right;
     font-size: 175%;
@@ -118,7 +120,7 @@ table {
 
 
 .dropbtn {
-    background-color: #E26D5A;
+    
     color: white;
     border-radius: 2px;
     padding: 16px;

@@ -33,10 +33,12 @@
             </div>
         </div>
         <br>
-        <div id ="bos" style="display:none"></div> 
+        <!-- <div id ="bos" style="display:none"></div>  -->
+        <div id ="bos"></div> 
 
       </div>
-      <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
+
+    <!--   <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div> -->
       <div id ="houC">
         <div class = "dropdown">
           <div id="city2" class="dropbtn" onclick="drop2()">City 2</div>
@@ -48,7 +50,8 @@
             </div>
         </div>
         <br>
-        <div id ="hou" style="display:none"></div> 
+        <!-- <div id ="hou" style="display:none"></div>  -->
+        <div id ="hou"></div> 
       </div>
 
   	 </div>
@@ -63,7 +66,7 @@
 
 // makeGet('/graph1/Boston,MA', '#bos');
 // makeGet('/graph2/Miami,FL', '#hou');
-var arr = document.getElementById('arr');
+//var arr = document.getElementById('arr');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
@@ -83,7 +86,7 @@ var miami2 = document.getElementById('miami2');
 
 var toggleArr = 0;
 
-/** When clicked it will reveal the graphs */
+/** When clicked it will reveal the graphs 
 arrow.addEventListener('click', function(){
   boston.style = "display:block";
   houston.style = "display:block";
