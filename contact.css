@@ -1,6 +1,6 @@
 body{
 	background-image:url('img/potatoes.jpg');
-/*	background-repeat:no-repeat;*/
+	background-repeat:repeat-y;
 /*	background-position:center;*/
 	background-size: cover;
 }
