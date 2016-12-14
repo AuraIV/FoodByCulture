@@ -1,5 +1,6 @@
 <html lang="en">
   <head>
+   <link rel="stylesheet" type="text/css" href="pages.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
 
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -38,11 +39,14 @@
   var info = document.getElementById("info");
 
   var talk = document.getElementById("talk");
+  splash.style.background = "#936446"
 
   splash.addEventListener("click", function(){
     var html;
     html = "<h2>Aura Velarde & Erik Sola</h2>";
     talk.innerHTML = html;
+    splash.style.background = "#936446"
+    info.style.background = "white"
   })
 
 
@@ -53,6 +57,8 @@
     html += "What kind of bias could surround the popularity of a restaurant? <br>"
     html += "Interact with our graphs and Maps, as we explore the possibilities."
     talk.innerHTML = html;
+    info.style.background = "#936446"
+    splash.style.background = "white";
   })
   </script>
 

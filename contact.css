@@ -1,37 +1,29 @@
 body{
-	background-image:url('img/potatoes.jpg');
-	background-repeat:repeat-y;
+background-image:url('img/potatoes.jpg');
+background-repeat:repeat-y;
 /*	background-position:center;*/
-	background-size: cover;
+background-size: cover;
 }
 
 #content{
-	overflow: auto;
+  overflow: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 
- #mapBos {
-        height: 50%;
-
-      }
- #mapHou {
-        height: 50%;
-       /* float: right;*/
-      }
-      /* Optional: Makes the sample page fill the window. */
- html, body {
-     height: 100%;
-     margin: 0;
-     padding: 0;
-  }
+#mapBos {
+  height: 50%;
+}
+#mapHou {
+  height: 50%;
+}
 
 
-  #houTitle{
-    height: 35px;
-  }
+#houTitle{
+  height: 35px;
+}
 
-  #bosTitle{
-    height: 35px;
-  }
+#bosTitle{
+  height: 35px;
+}

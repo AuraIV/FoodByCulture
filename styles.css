@@ -40,14 +40,13 @@ text-decoration: none;
  width:18%;
 }
 
-nav li a{
+nav li a {
 	text-decoration: none;
 	color: white
 }
 
-nav li a:hover{
+nav li:hover{
 	font-size: 25px;
-	
 }
 
 #content{
