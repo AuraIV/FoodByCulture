@@ -26,10 +26,10 @@
         <div class = "dropdown">
           <div id="city1" class="dropbtn" onclick="drop1()">City 1</div>
             <div id="myDropdown1" class="dropdown-content">
-              <p id="newport1">Newport,RI</p>
-              <p id="seattle1">Seattle,WA</p>
-              <p id="portsmouth1">Portsmouth,NH</p>
-              <p id="miami1">Miami,FL</p>
+              <p id="newport1" style="">Newport,RI</p>
+              <p id="seattle1" style="">Seattle,WA</p>
+              <p id="portsmouth1" style="">Portsmouth,NH</p>
+              <p id="miami1" style="">Miami,FL</p>
             </div>
         </div>
         <br>
@@ -41,10 +41,10 @@
         <div class = "dropdown">
           <div id="city2" class="dropbtn" onclick="drop2()">City 2</div>
             <div id="myDropdown2" class="dropdown-content">
-              <p id="newport2">Newport,RI</p>
-              <p id="seattle2">Seattle,WA</p>
-              <p id="portsmouth2">Portsmouth,NH</p>
-              <p id="miami2">Miami,FL</p>
+              <p id="newport2" style="">Newport,RI</p>
+              <p id="seattle2" style="">Seattle,WA</p>
+              <p id="portsmouth2" style="">Portsmouth,NH</p>
+              <p id="miami2" style="">Miami,FL</p>
             </div>
         </div>
         <br>
@@ -52,7 +52,7 @@
         <span class="titleAxis" style="display:none" id="axisH"> <p>Amount</p> </span>
       </div>
 
-  	 </div>
+     </div>
 
     
     
@@ -61,9 +61,12 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+var activeLeft = '';
+var activeRight = '';
 
-// makeGet('/graph1/Boston,MA', '#bos');
-// makeGet('/graph2/Miami,FL', '#hou');
+var inactiveLeft = '';
+var inactiveRight = '';
+
 var axisB = document.getElementById('axisB');
 var axisH = document.getElementById('axisH');
 
@@ -99,12 +102,6 @@ arrow.addEventListener('click', function(){
     houston.style = "display:block";
     axisH.style = "display:block";
     axisB.style = "display:block";
-
-   
-
-    // result.style = 'display:block';
-    // content.style.height = '300px'
-
     bounce[0].style.webkitAnimationPlayState="paused";
     arrow.style.float = 'left';
     arrow.style.cursor = 'auto';
@@ -122,44 +119,101 @@ function drop2() {
     document.getElementById("myDropdown2").classList.toggle("show");
 }
 
+function hideCities(inactive){
+  console.log(inactive)
+  switch(inactive){
+    case 'newport1':
+      newport1.style = "display:block"
+      break;
+    case 'newport2':
+      newport2.style = "display:block"
+      break;
+    case 'seattle1':
+      seattle1.style = "display:block"
+      break;
+    case 'seattle2':
+      seattle2.style = "display:block"
+      break;
+    case 'portsmouth1':
+      portsmouth1.style = "display:block"
+      break;
+    case 'portsmouth2':
+      portsmouth2.style = "display:block"
+      break;
+    case 'miami1':
+      miami1.style = "display:block"
+      break;
+    case 'miami2':
+      miami2.style = "display:block"
+      break;
+  }
+}
+
 newport1.addEventListener('click', function(){
   document.getElementById('bos').innerHTML = ""
   city1.innerText = 'Newport, RI'
+  hideCities(inactiveRight)
+  inactiveRight = 'newport2';
+  newport2.style = "display:none"; 
   makeGet('/graph1/Newport,RI', '#bos')
 });
 newport2.addEventListener('click', function(){
   document.getElementById('hou').innerHTML = ""
   city2.innerText = 'Newport, RI'
+  hideCities(inactiveLeft)
+  inactiveLeft = 'newport1';
+  newport1.style = "display:none"; 
   makeGet('/graph2/Newport,RI', '#hou')
 });
 seattle1.addEventListener('click', function(){
   document.getElementById('bos').innerHTML = ""
   city1.innerText = 'Seattle, WA'
+  hideCities(inactiveRight)
+  inactiveRight = 'seattle2';
+  seattle2.style = "display:none";
+
+
   makeGet('/graph1/Seattle,WA', '#bos')
 });
 seattle2.addEventListener('click', function(){
   document.getElementById('hou').innerHTML = ""
   city2.innerText = 'Seattle, WA'
+  hideCities(inactiveLeft)
+  inactiveLeft = 'seattle1';
+  seattle1.style = "display:none"; 
   makeGet('/graph2/Seattle,WA', '#hou')
 });
 portsmouth1.addEventListener('click', function(){
   document.getElementById('bos').innerHTML = ""
   city1.innerText = 'Portsmouth, NH'
+  hideCities(inactiveRight)
+  inactiveRight = 'portsmouth2';
+  portsmouth2.style = "display:none";
   makeGet('/graph1/Portsmouth,NH', '#bos')
 });
 portsmouth2.addEventListener('click', function(){
   document.getElementById('hou').innerHTML = ""
   city2.innerText = 'Portsmouth, NH'
+  hideCities(inactiveLeft)
+  inactiveLeft = 'portsmouth1';
+  portsmouth1.style = "display:none"; 
   makeGet('/graph2/Portsmouth,NH', '#hou')
 });
 miami1.addEventListener('click', function(){
   document.getElementById('bos').innerHTML = ""
   city1.innerText = 'Miami, FL'
+  hideCities(inactiveRight)
+  inactiveRight = 'miami2';
+  miami2.style = "display:none";
+
   makeGet('/graph1/Miami,FL', '#bos')
 });
 miami2.addEventListener('click', function(){
   document.getElementById('hou').innerHTML = ""
   city2.innerText = 'Miami, FL'
+  hideCities(inactiveLeft)
+  inactiveLeft = 'miami1';
+  miami1.style = "display:none"; 
   makeGet('/graph2/Miami,FL', '#hou')
 });
 
@@ -177,21 +231,6 @@ window.onclick = function(event) {
     }
   }
 }
-
-/**Click the first city on the left in order to change it
-city1.addEventListener('click', function(){
-  //Add new city here
-  console.log('city1')
-  boston.style = "display:block";
- 
-  city1.innerText = 'Newport,RI'
-  makeGet('/graph1/Newport,RI', '#bos')
-});
-*/
-
-/**Click the second city on the right in order to change it*/
-
-
 
 function makeGet(url, contName) {
   var req = new XMLHttpRequest();
