@@ -7,10 +7,13 @@ body{
 
 #content{
 	overflow: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
  #mapBos {
         height: 50%;
+
       }
  #mapHou {
         height: 50%;
@@ -21,4 +24,13 @@ body{
      height: 100%;
      margin: 0;
      padding: 0;
+  }
+
+
+  #houTitle{
+    height: 35px;
+  }
+
+  #bosTitle{
+    height: 35px;
   }
