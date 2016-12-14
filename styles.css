@@ -92,3 +92,24 @@ img a{
 	border-radius: 5px;
 	border: solid white 2px;
 }
+
+ol{
+    list-style: none;
+     clear: both;
+/*    margin: 0 auto;*/
+    padding: 0;
+   /* width:100%;*/
+}
+ol li{
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    width:12px;
+    height:12px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+#talk{
+	color: white;
+}

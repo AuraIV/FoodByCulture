@@ -18,14 +18,40 @@
        </ul>
       </nav>
 
-  <div id = "content">
+<!--   <div id = "content">
     <p>Content here</p>
-  </div>
+  </div> -->
 
   <div id="title">
     <h1>Food by Culture</h1>
-    <h2>Aura Velarde & Erik Sola</h2>
+    <div id="talk""> <h2>Aura Velarde and Erik Sola</h2> </div>
+      <ol>
+        <li id="splash"></li>
+        <li id="info"></li>
+      </ol>
+
   </div>
+  <script>
+  var splash = document.getElementById("splash");
+
+  var info = document.getElementById("info");
+
+  var talk = document.getElementById("talk");
+
+  splash.addEventListener("click", function(){
+    var html;
+    html = "<h2>Aura Velarde & Erik Sola</h2>";
+    talk.innerHTML = html;
+  })
+
+
+  info.addEventListener("click", function(){
+    var html;
+    html = "Welcome to our project! <br> Have you ever wondered the correlation between restaurants and culture in a city? <br>";
+    html += "What about how location can have an impact on a restaurant's popularity?" 
+    talk.innerHTML = html;
+  })
+  </script>
 
   </body>
 </html>
