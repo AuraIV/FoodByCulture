@@ -47,6 +47,7 @@ color:white;
 #arrow {
     width: 65px;
     height: 65px;
+    cursor: pointer;
 }
 
 table th {
