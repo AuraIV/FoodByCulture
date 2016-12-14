@@ -121,6 +121,11 @@ table {
     cursor: pointer;
 }
 
+
+.titleAxis {
+    font-family: calibri;
+    color:black;
+}
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
     background-color: #E78778;

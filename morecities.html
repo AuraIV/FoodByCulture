@@ -34,7 +34,7 @@
         </div>
         <br>
         <div id ="bos" style="display:none"></div> 
-
+        <span class="titleAxis" style="display:none" id="axisB"> <p>Amount</p> </span>
       </div>
       <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> </div>
       <div id ="houC">
@@ -49,6 +49,7 @@
         </div>
         <br>
         <div id ="hou" style="display:none"></div> 
+        <span class="titleAxis" style="display:none" id="axisH"> <p>Amount</p> </span>
       </div>
 
   	 </div>
@@ -63,6 +64,9 @@
 
 // makeGet('/graph1/Boston,MA', '#bos');
 // makeGet('/graph2/Miami,FL', '#hou');
+var axisB = document.getElementById('axisB');
+var axisH = document.getElementById('axisH');
+
 var arr = document.getElementById('arr');
 var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
@@ -86,14 +90,25 @@ var toggleArr = 0;
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
-  boston.style = "display:block";
-  houston.style = "display:block";
-  // result.style = 'display:block';
-  // content.style.height = '300px'
+  var cityL = city1.innerText;
+  var cityR = city2.innerText;
+  
+  if(cityL !== "City 1" && cityR !== "City 2"){
 
-  bounce[0].style.webkitAnimationPlayState="paused";
-  arrow.style.float = 'left';
-  arrow.style.cursor = 'auto';
+    boston.style = "display:block";
+    houston.style = "display:block";
+    axisH.style = "display:block";
+    axisB.style = "display:block";
+
+   
+
+    // result.style = 'display:block';
+    // content.style.height = '300px'
+
+    bounce[0].style.webkitAnimationPlayState="paused";
+    arrow.style.float = 'left';
+    arrow.style.cursor = 'auto';
+  }
 
 });
 
@@ -215,7 +230,11 @@ A.sort(function (a, b) {
 
   // A.sort();
   var data = A;
+  var s = d3.scaleLinear()
+          .domain([1,40])
+          .range([0,400]);
 
+  var a = d3.axisBottom(s);
        d3.select(contName).selectAll('p')
       .data(data)
       .enter().append('p')
@@ -223,6 +242,11 @@ A.sort(function (a, b) {
       .on('mouseenter', function() {
         d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#936446')
       })
+
+
+
+ var access = d3.select(contName).append('svg').attr('width', '145%').attr('height', 20);
+  a(access);
 }
 
   
