@@ -18,7 +18,8 @@ font-family: 'Amatic SC', cursive;
 	background-repeat:no-repeat;
 	/*background-size:contain;*/
 	background-position:center;
-	background-size: 100%;
+	/*background-size: 100%;*/
+	background-size: cover;
 
 }
 nav {
