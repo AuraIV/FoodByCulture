@@ -95,6 +95,8 @@ function handleRes(req, contName) {
 }
 
 function buildList( A, contName ) {
+
+  var el = document.getElementById('contName')
 console.log(A)
 A.sort(function (a, b) {
   if (a.value < b.value) {
@@ -110,6 +112,12 @@ A.sort(function (a, b) {
   A.sort();
   var data = A;
 
+  var s = d3.scaleLinear()
+          .domain([1,40])
+          .range([0,400]);
+
+  var a = d3.axisBottom(s);
+
        d3.select(contName).selectAll('p')
       .data(data)
       .enter().append('p')
@@ -117,10 +125,15 @@ A.sort(function (a, b) {
       .on('mouseenter', function() {
         d3.select(this).transition().duration(5000).style('width', function(d) { return d.value*10+'px'; }).style('color', 'white').style('background-color', '#936446')
       })
-}
+
+
+
+  var access = d3.select(contName).append('svg').attr('width', '145%').attr('height', 20);
+  a(access);
 
   
 
+}
 </script>
 
 </body>
