@@ -150,7 +150,10 @@ var server = http.createServer (function (req, res) {
       break 
     case '/heatMaps.js':
       sendFile(res, 'heatMaps.js', 'text/javascript')
-      break;     
+      break; 
+    case '/README.md':
+      sendFile(res, 'README.md', 'text/css')
+      break;         
     default:
       res.end('404 not found')
   }
