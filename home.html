@@ -29,6 +29,7 @@
         <h2 id="city1">Boston</h2>
         <div id ="bos" style="display: none">  
         </div> 
+         <span class="titleAxis" id="bSpan" style="display:none"> <p>Amount of Restaurants</p> </span>
       </div>
 
       <div id ="arr"> <img src="img/arrow_down.png" class="bounce" id="arrow"> 
@@ -38,9 +39,10 @@
 
         <h2 id="city2">Houston</h2> 
         <div id="hou" style="display: none"> </div>
+         <span class="titleAxis" id="hSpan" style="display:none" id="axisB"> <p>Amount of Restaurants</p> </span>
       </div>
        
-       <div id="hou" style="display: none"> </div>
+       <!-- <div id="hou" style="display: none"> </div> -->
 
 
 
@@ -63,6 +65,8 @@ var boston = document.getElementById('bos');
 var houston = document.getElementById('hou');
 var bounce = document.getElementsByClassName('bounce');
 var result = document.getElementById('result');
+var bSpan = document.getElementById('bSpan');
+var hSpan = document.getElementById('hSpan');
 
 /** When clicked it will reveal the graphs */
 arrow.addEventListener('click', function(){
@@ -73,6 +77,10 @@ arrow.addEventListener('click', function(){
   arrow.style.cursor = 'auto';
   // arrow.style.width = '10%';
   arrow.style.float = 'left';
+  bSpan.style = "display:inline"
+  hSpan.style = "display:inline"
+
+
 });
 
 function makeGet(url, contName) {

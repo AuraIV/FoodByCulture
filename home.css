@@ -7,6 +7,12 @@ body{
 
 }
 
+
+.titleAxis {
+    font-family: calibri;
+    color:black;
+}
+
 #bosC {
 width: 47%;
 float: left;
