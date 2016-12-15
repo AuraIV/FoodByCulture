@@ -75,8 +75,8 @@ var server = http.createServer (function (req, res) {
     case '/about.html':
       sendFile(res, 'about.html', 'text/html')
       break;
-    case '/contact.html':
-      sendFile(res, 'contact.html', 'text/html')
+    case '/maps.html':
+      sendFile(res, 'maps.html', 'text/html')
       break;
     case '/morecities.html':
       sendFile(res, 'morecities.html', 'text/html')
