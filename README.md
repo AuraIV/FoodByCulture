@@ -16,7 +16,7 @@ Ensure to interact with the graph! By hovering over each type of culture, the ba
 This is specifically for Houston & Boston
 
 Compare Cities
-Pick two cities, and you will be able to integraph with two graphs after clicking the arrow.
+Pick two cities, and you will be able to interact with the two graphs like previously after clicking the arrow.
 
 Maps:
 Houston & Boston's top 40 restaurants. 
@@ -37,7 +37,7 @@ so we had to ensure that those categories would be counted... but not double!
 - Styling: We decided to do everything from scratch, so there were a lot of adventures involving CSS and Javascript.
 - Dropdown: Ensuring that you couldn't select the same city twice.
 - Running time: At first, our graphs would take forever to load, using promises we were able to ensure it was fast.
-- Bar graphs: We learned how to use d3, and set up an axis
+- Bar graphs: We started learning the basics of d3, there's much more to learn, but it was fun!
 
 What would we do if we had more time?
 - More research on possible bias of data
