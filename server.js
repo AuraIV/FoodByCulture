@@ -1,17 +1,20 @@
 var http = require('http')
   , fs   = require('fs')
   , url  = require('url')
+  // . config = require('./config.json')
   , port = 8080;
 
 var Yelp = require('yelp');
 var OAuth = require('oauth');
+var config = require('./config.json')
 
+console.log(config)
 //Yelp authentication
 var yelp = new Yelp({
-  consumer_key: 'feTHK0-ZF4oOlpdtgv_crw',
-  consumer_secret: 'gv_KEZ8JQy1Q7N7whLqvePocFAk',
-  token: 'dkCJ5iwv6AQesY8AdzlXRdVIxX7R2sUp',
-  token_secret: 'frNGbchbX9T7QylpGVOrc7hew4s',
+  consumer_key: config.consumer_key,
+  consumer_secret: config.consumer_secret,
+  token: config.token,
+  token_secret: config.token_secret,
 });
 
 //Array of food categories needed for the classfication of cultures of restaurants
